@@ -1,0 +1,96 @@
+.SliderParent {
+    position: relative;
+}
+
+.SliderParent .CoinNumber {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.SliderParent .AllButtonSection {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.SliderParent h2 {
+    color: white;
+    font-size: 34px;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin-left: 18px;
+}
+
+.SliderParent button {
+    color: gold;
+    border: 2px solid gold;
+    padding: 0px 8px;
+    margin-left: 8px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+
+.explosion {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+}
+
+.explosion .particle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    animation: pop 0.8s reverse forwards;
+}
+
+#coin .counter {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    width: 40px;
+    z-index: 10;
+    opacity: .7;
+}
+
+#coin {
+    position: relative;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+    }
+}
+
+/* html, body {
+    height: 100%;
+    background: #fff;
+  }
+  
+  body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  } */
+
+.svg {
+    padding: 0;
+    margin: 0;
+    height: 30px;
+    width: 30px;
+}

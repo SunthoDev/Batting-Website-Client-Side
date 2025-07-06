@@ -1,0 +1,18 @@
+/* In your CSS or Tailwind file */
+
+.NavBtn {
+  @apply flex flex-col items-center text-white hover:text-yellow-400 transition-all duration-300;
+}
+
+
+.NavBtn .icon {
+  @apply w-5 h-5;
+}
+
+/* Active (clicked) */
+.NavBtn.active .iconWrapper {
+  @apply bg-yellow-600 shadow-yellow-400 shadow-md scale-110;
+}
+.NavBtn.active .label {
+  @apply text-yellow-400 font-semibold;
+}

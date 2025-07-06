@@ -1,0 +1,141 @@
+
+
+.WithdrawParent {
+    background-color: white;
+    padding: 14px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.WithdrawParent h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: sans-serif;
+    padding-top: 8px;
+}
+
+.WithdrawParent h4 {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: sans-serif;
+    padding-top: 24px;
+    text-align: left;
+}
+.WithdrawParent h6 {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+    padding-top: 16px;
+    text-align: left;
+}
+
+
+.WithdrawParent .PaymentInput{}
+
+.mt-\[8px\] {
+    font-family: sans-serif;
+    margin-top: 8px;
+    border: 1px solid black;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 18px;
+}
+
+.WithdrawParent .PaymentInput select{
+    font-family: sans-serif;
+    margin-top: 8px;
+    border: 1px solid black;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 18px;
+}
+
+.WithdrawParent .WithdrawStatuss  {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+    padding-top: 18px;
+    text-align: left;
+    color: red;
+}
+
+.WithdrawParent  .UpdateButton {
+    width: 100%;
+    background-color: #3CCC70;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    padding: 8px 0;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* ============================ */
+
+
+.WithdrawParent .TotalWithdraw{
+    margin-top: 14px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.WithdrawParent .TotalWithdraw h2 {
+    text-align: left;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: black;
+    font-weight: 600;
+}
+
+.WithdrawParent .TotalWithdraw h3{
+    text-align: left;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: black;
+    font-weight: 600;
+}
+
+
+/* ==================== */
+
+    .WithdrawParent .YourAllWithdrawData{
+        margin-bottom: 12px;
+    }
+
+    .WithdrawParent .YourAllWithdrawData h4 {
+        color: black;
+        font-size: 14px;
+        font-weight: 600;
+        padding-top: 12px;
+        padding-bottom: 14px;
+    }
+    .WithdrawParent .YourAllWithdrawData .userAllWithdrawItems {
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+    }
+    
+    .WithdrawParent .YourAllWithdrawData .userAllWithdrawItems h3 {
+        color: black;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 2px 0;
+    }
+
+
+
+
+
+
+
+
+
+
+

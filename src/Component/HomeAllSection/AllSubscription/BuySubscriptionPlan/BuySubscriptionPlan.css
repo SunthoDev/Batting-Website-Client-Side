@@ -1,0 +1,69 @@
+
+
+
+
+
+.SubscriptionBuyParent{}
+
+.SubscriptionBuyParent .Information {
+    background-color: white;
+    padding: 14px 10px;
+    border-radius: 1px 1px 6px 6px;
+}
+
+.SubscriptionBuyParent .Information .TopInfo {
+    border-bottom: 1px solid #d5daef;
+    padding-bottom: 8px;
+}
+.SubscriptionBuyParent .Information .TopInfo h3 {
+    color: #10A35C;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
+.SubscriptionBuyParent .Information .TopInfo h4 {
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+    padding-top: 6px;
+}
+
+
+/* =============== */
+
+.SubscriptionBuyParent .Information .BoxParent .Box {
+    padding: 10px 0;
+}
+.SubscriptionBuyParent .Information .BoxParent .Box h2 {
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+}
+.SubscriptionBuyParent .Information .BoxParent .Box h3{
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* =============== */
+
+.SubscriptionBuyParent .Information .BuyButton {
+    background-color: #10A35C;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+    padding: 6px 0;
+    margin: 10px 0;
+    border-radius: 6px;
+}
+
+
+
+
+
+
+

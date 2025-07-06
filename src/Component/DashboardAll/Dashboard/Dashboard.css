@@ -1,0 +1,84 @@
+.drawer-side a .active {
+    color: white;
+}
+
+.drawer-side a {
+    background-color: transparent;
+}
+
+
+.menuParent .NameInformation img {
+    width: 80px;
+    height: 82px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 1px auto;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    overflow: hidden;
+}
+
+.menuParent{
+    overflow: overlay;
+}
+.menuParent:-webkit-scrollbar{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Logo {
+    font-size: 21px;
+    font-family: emoji;
+    font-weight: 600;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.Logo span {
+    color: black;
+    font-weight: 500;
+    letter-spacing: 6px;
+    font-size: 16px;
+}
+
+.menuParent li {
+    color: black;
+    font-weight: 600;
+    font-size: 17px;
+    font-family: auto;
+    margin-top: 6px;
+}
+
+.menuParent li span {
+
+    color: black;
+    font-size: 19px;
+    margin-right: 6px;
+}
+
+.menuParent {
+    background-color: white;
+}
+
+.menuParent .Dashboard {
+    background-color: #22afa3;
+    color: white;
+    border-radius: 8px;
+    padding: 4px 0px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 20px;
+}

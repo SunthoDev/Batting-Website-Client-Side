@@ -1,0 +1,63 @@
+
+
+
+.ClimedDetailsParent {
+    background-color: white;
+    padding: 14px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+.ClimedDetailsParent .ClimeOptions {
+
+}
+
+.ClimedDetailsParent .ClimeOptions h5 {
+    color: black;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.ClimedDetailsParent .ClimeOptions button {
+    background-color: #3ccc70;
+    color: white;
+    padding: 8px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+
+
+/* =========================================== */
+
+
+.ClimedDetailsParent .userSubInformation {
+    background-color: white;
+    padding: 14px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    margin-top: 22px;
+}
+
+.ClimedDetailsParent .userSubInformation .info{
+    padding: 6px 0;
+}
+
+.ClimedDetailsParent .userSubInformation .info h3 {
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.ClimedDetailsParent .userSubInformation .info h4{
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+

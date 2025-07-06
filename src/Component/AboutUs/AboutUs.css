@@ -1,0 +1,48 @@
+
+.AboutUsParent {}
+
+.AboutUsParent .About {
+    background-color: white;
+    padding: 14px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.AboutUsParent .About h4 {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    padding-top: 18px;
+    font-family: sans-serif;
+}
+
+.AboutUsParent .About p {
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: justify;
+    font-family: sans-serif;
+    padding-top: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

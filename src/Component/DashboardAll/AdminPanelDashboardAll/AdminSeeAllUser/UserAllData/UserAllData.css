@@ -1,0 +1,70 @@
+.UserAllData td {}
+
+.UserAllData td {
+    background-color: white;
+    border-bottom: 2px solid #22afa3;
+}
+
+.UserAllData td button {
+    color: white;
+    background-color: #22afa3;
+    width: 102px;
+    height: 30px;
+    margin-top: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.UserAllData td h3{
+
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+}
+
+.UserAllData .Role {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================== */
+
+
+
+.UserBalanceUpdate{
+    position: relative;
+}
+
+.UserBalanceUpdate input {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.UserBalanceUpdate .UpButton {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    width: 80px;
+    height: 38px;
+    color: white;
+    background: #22afa3;
+}
+
+

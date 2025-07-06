@@ -1,0 +1,97 @@
+
+
+
+
+
+
+.ConfirmedPayment{}
+
+.ConfirmedPayment .StepOne {
+    background-color: #3CCC70;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    padding: 6px 28px;
+    font-weight: 400;
+}
+
+.ConfirmedPayment .paymentNumber, .ConfirmedPayment .paymentType, .ConfirmedPayment .TotalPayment {
+    padding: 10px 28px;
+    border-bottom: 2px dotted black;
+    margin-top: 6px;
+}
+
+.ConfirmedPayment .paymentNumber h3, .ConfirmedPayment .paymentType h3, .ConfirmedPayment .TotalPayment h3 {
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: sans-serif;
+}
+
+.ConfirmedPayment .paymentNumber h4, .ConfirmedPayment .paymentType h4, .ConfirmedPayment .TotalPayment h4{
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: sans-serif;
+}
+
+.ConfirmedPayment .StepTwo {
+    background-color: #3CCC70;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    padding: 6px 28px;
+    font-weight: 400;
+    margin-top: 18px;
+}
+
+.ConfirmedPayment .TransId {
+    padding: 6px 28px;
+    font-weight: 400;
+    margin-top: 12px;
+}
+
+.ConfirmedPayment .img{
+    width: 100%;
+}
+
+/* --------------------------- */
+
+.ConfirmedPayment .StepThree {
+    background-color: #3CCC70;
+    font-size: 16px;
+    font-family: sans-serif;
+    color: white;
+    padding: 6px 28px;
+    font-weight: 400;
+    margin:12px 0px;
+}
+
+.ConfirmedPayment .TrxIDCoPayment {
+    font-size: 16px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid black;
+    width: 100%;
+    color: black;
+    font-weight: 400;
+    font-family: sans-serif;
+    border-radius: 8px;
+}
+
+.ConfirmedPayment .PaymentDone {
+    background: #3CCC70;
+    width: 100%;
+    margin-top: 20px;
+    color: white;
+    font-size: 16px;
+    font-family: sans-serif;
+    padding: 8px 0px;
+    border-radius: 8px;
+}
+
+
+
+
+
+

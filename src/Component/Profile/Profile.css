@@ -1,0 +1,295 @@
+.ProfileALl {
+    font-family: 'Inter', sans-serif !important;
+}
+
+.ProfileALl .ProfileLeft {
+    padding: 14px 0px;
+}
+
+.ProfileALl .ProfileLeft .img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    top: 0 left;
+}
+
+.ProfileALl .ProfileLeft .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.ProfileALl .ProfileLeft h3 {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+.ProfileALl .ProfileLeft h2 {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    /* font-family: auto; */
+    font-weight: 400;
+    padding-top: 0px;
+    margin-bottom: 34px;
+}
+
+.ProfileALl .ProfileLeft hr {
+    margin: 0px 30px;
+}
+
+.ProfileALl .ProfileLeft h4 {
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    /* font-family: sans-serif; */
+    font-weight: 600;
+    border-radius: 6px;
+    margin: 39px 48px;
+    background-color: white;
+    padding: 8px 1px;
+}
+
+
+/* =========================== */
+
+
+.ProfileALl .ProfileRight {
+    padding: 24px;
+
+}
+
+.ProfileALl .ProfileRight .Edite {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.ProfileALl .ProfileRight .Edite i {
+    font-size: 22px;
+}
+
+.ProfileALl .ProfileRight h2 {
+    color: black;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+
+.ProfileALl .ProfileRight .infoNAme h5 {
+    background-color: red;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+
+.ProfileALl .ProfileRight .OurInfoMain {
+    margin: 18px 0;
+}
+
+.ProfileALl .ProfileRight .OurInfoMain .OurInfo {}
+
+.ProfileALl .ProfileRight .OurInfoMain .OurInfo img {
+    margin: 0 auto;
+}
+
+.ProfileALl .ProfileRight .OurInfoMain .OurInfo h4 {
+    color: black;
+    font-size: 16px;
+    font-family: cursive;
+    text-align: center;
+    padding-top: 6px;
+
+}
+
+/* ======================== */
+
+
+.AboutUs {
+    padding: 12px 24px;
+    background-color: white;
+    margin-top: 16px;
+}
+
+
+.AboutUs .OurInfoMain {
+}
+
+.AboutUs .OurInfoMain .OurInfo {}
+
+
+.AboutUs .OurInfoMain .OurInfo img {
+    margin: 0 auto;
+}
+
+.AboutUs .OurInfoMain .OurInfo h4 {
+    color: black;
+    font-size: 16px;
+    font-family: cursive;
+    text-align: center;
+    padding-top: 6px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================== */
+/* Alert container Three Start  */
+/* ============================== */
+
+.alertContainerThree {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.showAlertJs {
+    top: 50%;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+}
+
+.alertContainerThree .poup {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 100%;
+    position: relative;
+}
+
+.alertContainerThree .poup .popInfo h2 {
+    color: #22afa3;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+/* ========================= */
+
+.alertContainerThree .poup .popInfo .MyReferInformation {}
+
+.alertContainerThree .poup .popInfo h2 {
+    color: black ;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation h1 {
+    color: black;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: emoji;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .InviteRefer {
+    box-shadow: 0 0 10px rgb(253 199 76);
+    margin-top: 14px;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .InviteRefer h2 {
+
+    color: black ;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.alertContainerThree .poup .popInfo .MyReferInformation .InviteRefer h3 {
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: serif;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation p {
+    color: black;
+    font-size: 14px;
+    text-align: justify;
+    margin-top: 8px;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .YourAllRefer {
+    height: 280px;
+    overflow: overlay;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .YourAllRefer::-webkit-scrollbar {
+    display: none;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .YourAllRefer h4 {
+    color: black;
+    text-align: left;
+    font-size: 18px;
+    font-family: emoji;
+    padding-top: 12px;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .YourAllRefer .userAllRefItems {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: #F7F8FC;
+    margin: 0 2px;
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-top: 18px;
+}
+
+.alertContainerThree .poup .popInfo .MyReferInformation .YourAllRefer .userAllRefItems h3 {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ========================= */
+.alertContainerThree .removeAlertBtn {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    border-radius: 50%;
+    line-height: 17px;
+    font-size: 28px;
+    color: black;
+}
+
+/* ============================== */
+/* Alert container Three End  */
+/* ============================== */

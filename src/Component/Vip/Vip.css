@@ -1,0 +1,51 @@
+
+.VIPParent {}
+
+
+.VIPParent .VIPTop {
+    padding: 14px 0px;
+}
+
+.VIPParent .VIPTop .img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    top: 0 left;
+}
+
+.VIPParent .VIPTop .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.VIPParent .VIPTop h3 {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 8px;
+}
+
+.VIPParent .VIPTop hr {
+    margin: 0px 30px;
+}
+
+/* =========================== */
+
+.VIPParent .VIPAll {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
