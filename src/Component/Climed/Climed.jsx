@@ -16,12 +16,9 @@ const Climed = () => {
 
     let { LastName, Password, UseRefCode, date, email, name, photo, referId, role, status, userBalance, userId, _id } = roles
 
-
-
     // ===================================================================
     //  // user All Subscription Data Start
     // ===================================================================
-
     const { data: UserSubscriptionDataAll = [], refetch } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
@@ -29,7 +26,6 @@ const Climed = () => {
             return res.json();
         },
     });
-
     // if user subscription have or have not 
     let userSubscription = []
     if (user && roles?.email && user?.email) {
@@ -47,11 +43,10 @@ const Climed = () => {
     // ===================================================================
 
     let handleUpdateUserClime = (Bonus, useEmail, subId) => {
-
         setBtnDisable(true)
-
         let allInfo = { Bonus, useEmail }
         // user Update Subscription Hours  daily  
+        // ===============================================
         fetch(`http://localhost:5000/UserSubscriptionHoursUpdate/${subId}`, {
             method: "PATCH",
         })
@@ -59,6 +54,7 @@ const Climed = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     // user Received  daily clime bonus 
+                    // ===========================================
                     fetch(`http://localhost:5000/UserClimeForAddBalance/${useEmail}`, {
                         method: "PATCH",
                         headers: {
@@ -86,9 +82,7 @@ const Climed = () => {
                     navigate("/")
                 }
             })
-
     }
-
 
     // ===================================================================
     //  // user Clime  Your Bonus Start

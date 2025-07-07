@@ -293,12 +293,32 @@ const EveryTopDetails = () => {
                 {/* MYGIFT */}
                 {/* ========================= */}
                 <div className="flex-1">
-                    <img
-                        src="https://static.besstmam.com/image/MYGIFT.png"
-                        alt="My Gift"
-                        className="w-full h-[254px] object-cover rounded-xl"
-                        draggable="false"
-                    />
+                    <div onClick={() => {
+                        if (user && roles?.email && user?.email) {
+                            navigate("/MyGift");
+                        } else {
+                            Swal.fire({
+                                title: 'Please Login Your Account',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Login Now'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    navigate("/login", { state: { from: location } });
+                                    toast("Login Page Success");
+                                }
+                            });
+                        }
+                    }}>
+                        <img
+                            src="https://static.besstmam.com/image/MYGIFT.png"
+                            alt="My Gift"
+                            className="w-full h-[254px] object-cover rounded-xl"
+                            draggable="false"
+                        />
+                    </div>
                 </div>
 
                 {/* JOIN */}
@@ -341,11 +361,6 @@ const EveryTopDetails = () => {
                     />
                 </div>
             </div>
-
-
-
-
-
 
             {/* ============================================= */}
             {/* Refer alert*/}

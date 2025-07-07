@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import "./Banner.css"
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 // =====================================================
 // Import Swiper styles Start
 // =====================================================
@@ -34,6 +35,16 @@ const Banner = () => {
     }, [pathname]);
     // ========================================
 
+    // =======================================================
+    // All Banner Data Get Here !
+    // =======================================================
+    const { data: AllBannerOfWebsite = [], refetch } = useQuery({
+        queryKey: ["AdminDashboardAllWorkHere-AllBanner"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/AdminDashboardAllWorkHere/AllBanner");
+            return res.json();
+        },
+    });
 
     return (
         <div className="pt-[80px] md:pt-[54px] mx-4 ">
@@ -54,37 +65,13 @@ const Banner = () => {
                     modules={[Autoplay, Pagination, Navigation]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
-                            <img className="w-[100%] h-[100%] rounded-[12px]" src={one} alt="img" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
-                            <img className="w-[100%] h-[100%] rounded-[12px]" src={two} alt="img" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
-                            <img className="w-[100%] h-[100%] rounded-[12px]" src={three} alt="img" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
-                            <img className="w-[100%] h-[100%] rounded-[12px]" src={four} alt="img" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
-                            <img className="w-[100%] h-[100%] rounded-[12px]" src={five} alt="img" />
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
-                            <img className="w-[100%] h-[100%] rounded-[12px]" src={one} alt="img" />
-                        </div>
-                    </SwiperSlide>
-
+                    {
+                        AllBannerOfWebsite?.map(banner => <SwiperSlide>
+                            <div className="w-[100%] h-[148px] md:h-[220px] overflow-hidden rounded-[12px]">
+                                <img className="w-[100%] h-[100%] rounded-[12px]" src={banner?.BannerImageUrl} alt="img" />
+                            </div>
+                        </SwiperSlide>)
+                    }
                 </Swiper>
             </div>
         </div>

@@ -19,8 +19,8 @@ const Withdraw = () => {
 
 
     // User Post withdraw request
+    // ===========================================
     let handleWithdrawRequestSend = (event) => {
-
         event.preventDefault()
         setBtnDisable(true)
         setError("")
@@ -30,16 +30,13 @@ const Withdraw = () => {
         let WithdrawId = Math.round(Math.random() * 99999999).toString()
         let Date = moment().format("MM/D/YY , hh:mm A")
 
-
         // roles?.userBalance < 200
-
         if (RequestBalance < 200) {
-            setError("200 টাকার নিচে উইথড্র করা যাবে না")
+            setError("You cant nit withdraw minumum 200")
             return;
         }
-
         if (roles?.userBalance < RequestBalance) {
-            setError(`আপনার ৳${RequestBalance} অ্যামাউন্ট নাই`)
+            setError(`There is not ৳${RequestBalance} any amount on your balance`)
             setBtnDisable(false)
             return;
         }
@@ -84,46 +81,33 @@ const Withdraw = () => {
     });
     // console.log(userAllWithdrawData)
 
-    // active user all approved pending withdraw data find
+    // My All Withdraw History Data filter here
     // ===================================================== 
     let userAllPaymentRequestData = userAllWithdrawData?.filter(userWithdraw => userWithdraw.UserEmail === roles?.email && userWithdraw.userId === roles?.userId)
-
     // console.log(userAllPaymentRequestData)
 
-
-    // ==========================================================
-    // Find user any pending withdraw request start 
-    // ==========================================================
-
+    // ==================================================================================================
+    // Find user any pending withdraw request || So that he can not ber sent rather withdraw request
+    // ==================================================================================================
     let userPendingWithdrawRequest = userAllWithdrawData?.find(userPendingData => userPendingData?.UserEmail === roles?.email && userPendingData?.status === "pending")
-
-    // ==========================================================
-    // Find user any pending withdraw request end 
-    // ==========================================================
-
 
 
     // ======================================================
     // Payment Selected Status Find and Apply Start
     // ======================================================
+    // const { data: AdminPaymentStatusData = [] } = useQuery({
+    //     queryKey: ["AdminPaymentStatusData"],
+    //     queryFn: async () => {
+    //         const res = await fetch("http://localhost:5000/AdminPaymentStatusData");
+    //         return res.json();
+    //     },
+    // });
 
-    const { data: AdminPaymentStatusData = [] } = useQuery({
-        queryKey: ["AdminPaymentStatusData"],
-        queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AdminPaymentStatusData");
-            return res.json();
-        },
-    });
-
-    // console.log(AdminPaymentStatusData[0])
-    let paymentTypeAdmin = AdminPaymentStatusData[0]
-
-
+    // // console.log(AdminPaymentStatusData[0])
+    // let paymentTypeAdmin = AdminPaymentStatusData[0]
     // ======================================================
     // Payment Selected Status Find and Apply End
     // ======================================================
-
-
 
 
     return (

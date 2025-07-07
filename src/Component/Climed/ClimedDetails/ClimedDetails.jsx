@@ -25,7 +25,7 @@ const ClimedDetails = ({ userSubscription, handleUpdateUserClime, btnDisable }) 
                         userSubscription?.status === "pending" ?
                             <button>Wite for Approved</button>
                             : userSubscription?.hours !== 0 ?
-                                <button>ক্লাইম করুন সকাল 9 টা A.M</button>
+                                <button>You can clime tomorrow !</button>
                                 :
                                 <button disabled={btnDisable} onClick={() => handleUpdateUserClime(userSubscription?.SubDayBonus, userSubscription?.UserEmail, SubscriptionId)}>Clime Now</button>
                     }
@@ -37,16 +37,20 @@ const ClimedDetails = ({ userSubscription, handleUpdateUserClime, btnDisable }) 
             <div className="userSubInformation ">
 
                 <div className="info flex items-center justify-between">
-                    <h3>My Subscription Status :</h3>
+                    <h3>Subscription Status :</h3>
                     <h4 className='ml-[73px]'>{userSubscription ? userSubscription?.status : "No Subscription Status Please Buy"}</h4>
                 </div>
                 <div className="info flex items-center justify-between">
-                    <h3>My Subscription Day :</h3>
-                    <h4 className='ml-[73px]'>{userSubscription ? userSubscription?.SubscriptionDay : "No Subscription Please Buy"}</h4>
+                    <h3>My Subscription Price :</h3>
+                    <h4 className='ml-[73px]'>{userSubscription ? userSubscription?.SubPrice : "No Subscription Please Buy"} Tk.</h4>
                 </div>
                 <div className="info flex items-center justify-between">
-                    <h3>My Subscription Day Bonus :</h3>
-                    <h4 className='ml-[73px]'>{userSubscription ? userSubscription?.SubDayBonus : "Before Buy a Subscription "}</h4>
+                    <h3>My Clime Bonus :</h3>
+                    <h4 className='ml-[73px]'>{userSubscription ? userSubscription?.SubDayBonus : "Before Buy a Subscription "} Tk.</h4>
+                </div>
+                <div className="info flex items-center justify-between">
+                    <h3>MSubscription Duration :</h3>
+                    <h4 className='ml-[73px]'>{userSubscription ? userSubscription?.SubscriptionDay : "No Subscription Please Buy"} Day.</h4>
                 </div>
 
             </div>

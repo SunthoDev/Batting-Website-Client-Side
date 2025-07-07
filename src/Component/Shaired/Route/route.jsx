@@ -25,6 +25,9 @@ import InventionUser from '../../OthersRouteWebsiteHome/InventionUser/InventionU
 import Withdraw from '../../OthersRouteWebsiteHome/Withdraw/Withdraw';
 import AllSubscription from '../../HomeAllSection/AllSubscription/AllSubscription';
 import RechargeHistory from '../../OthersRouteWebsiteHome/PaymentAllSystem/RechargeHistory/RechargeHistory';
+import AdminDashboard from '../../DashboardAll/AdminPanelDashboardAll/AdminDashboard/AdminDashboard';
+import MyGift from '../../OthersRouteWebsiteHome/MyGift/MyGift';
+import AllBankCard from '../../OthersRouteWebsiteHome/AllBankCard/AllBankCard';
 
 
 let route = createBrowserRouter([
@@ -95,6 +98,14 @@ let route = createBrowserRouter([
             {
                 path: "AllSubscription",
                 element: <PrivateRoute> <AllSubscription></AllSubscription> </PrivateRoute>
+            },
+            {
+                path: "MyGift",
+                element: <PrivateRoute> <MyGift></MyGift> </PrivateRoute>
+            },
+            {
+                path: "AllBankCard",
+                element: <PrivateRoute> <AllBankCard></AllBankCard> </PrivateRoute>
             }
         ] 
     },
@@ -104,6 +115,10 @@ let route = createBrowserRouter([
         path: "dashboardPlant",
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            {
+                path: "AdminDashboard",
+                element:  <PrivateRoute> <AdminDashboard></AdminDashboard></PrivateRoute>
+            },
             {
                 path: "AdminUser",
                 element:  <PrivateRoute> <AdminSeeAllUser></AdminSeeAllUser></PrivateRoute>

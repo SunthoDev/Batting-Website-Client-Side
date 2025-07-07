@@ -8,7 +8,8 @@ import { useEffect } from 'react';
 
 const UserSubscriptionAllData = () => {
 
-    // user data all find use tenStack query 
+    // user All Subscription Data Find here
+    // ==================================================
     const { data: UserSubscriptionDataAll = [], refetch } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
@@ -16,7 +17,6 @@ const UserSubscriptionAllData = () => {
             return res.json();
         },
     });
-
 
     // ====================================================================
     // Input value get
@@ -34,27 +34,28 @@ const UserSubscriptionAllData = () => {
     let UserIdValueShow = UserSubscriptionDataAll.filter(VerifiedUserId => VerifiedUserId.userId === UserIdValue)
     //  console.log(UserIdValueShow)
 
-    // ======================================
-    //Admin Approved User
-    // ======================================
-
+    // ============================================
+    // Admin (Approved) User Subscription Start
+    // ============================================
     let HandleApproved = (id, ReferId, SubscriptionId, UseRefBonusUser, SubPrice) => {
         let RefTotalBalance = { UseRefBonusUser: UseRefBonusUser }
         let SubTotalPrice = { SubscriptionPriceTotall: SubPrice }
-
+        // Subscription Approved Here
+        // ==================================
         fetch(`http://localhost:5000/AdminUpdateUserVerifiedStatus/${SubscriptionId}`, {
             method: "PATCH",
         })
             .then(res => res.json())
             .then(data => {
+                // Subscription Approved Here
+                // ==================================
                 if (data.modifiedCount > 0) {
-
-                    // =======================================================
-                    // Refer code work Start
-                    // =======================================================
-
+                    // ===========================================================================
+                    // If this user use ref code , then follow below .. otherwise follow else
+                    // ===========================================================================
                     if (ReferId !== "0000") {
                         // User ref status approved ref
+                        // ==============================
                         fetch(`http://localhost:5000/AdminApprovedUserRefStatus/${SubscriptionId}`, {
                             method: "PATCH",
                         })
@@ -134,14 +135,15 @@ const UserSubscriptionAllData = () => {
             })
     }
 
-    // ======================================
-    //Admin Pending User
-    // ======================================
-
+    // ============================================
+    // Admin (Pending) User Subscription Start
+    // ============================================
     let HandlePending = (id, ReferId, SubscriptionId, UseRefBonusUser, SubPrice) => {
         let allInfo = { UseRefBonusUser: UseRefBonusUser }
         let SubTotalPrice = { SubscriptionPriceTotall: SubPrice }
 
+        // Subscription Approved Here
+        // ==================================
         fetch(`http://localhost:5000/AdminUpdateUserPendingStatus/${SubscriptionId}`, {
             method: "PATCH",
         })
@@ -172,8 +174,7 @@ const UserSubscriptionAllData = () => {
                                         .then(res => res.json())
                                         .then(data => {
                                             if (data.modifiedCount > 0) {
-
-                                                // User balance Decrase For Subscription Price 
+                                                // User balance Add For Subscription Price 
                                                 fetch(`http://localhost:5000/AdminUserBalanceBackSubscriptionCost/${id}`, {
                                                     method: "PATCH",
                                                     headers: {
@@ -205,7 +206,6 @@ const UserSubscriptionAllData = () => {
                         // =======================================================
                         // without buy subscription buy
                         // =======================================================
-
                         fetch(`http://localhost:5000/AdminUserBalanceBackSubscriptionCost/${id}`, {
                             method: "PATCH",
                             headers: {
@@ -233,10 +233,9 @@ const UserSubscriptionAllData = () => {
             })
     }
 
-    // ======================================
-    //Admin Delete User verified request
-    // ======================================
-
+    // ==============================================
+    //Admin Delete User Subscription request
+    // =============================================
     let HandleDelete = (id, ReferId, SubscriptionId) => {
         Swal.fire({
             title: "Are you sure?",
@@ -284,24 +283,19 @@ const UserSubscriptionAllData = () => {
                                     timer: 1500
                                 })
                             }
-
                         }
                         // console.log(data)
 
                         refetch()
                     })
-
             }
 
         });
     }
 
-
-
     // ======================================
-    //Admin Subscription Access Send Start
+    // Admin Subscription Access Send Start
     // ======================================
-
     let HandleSendSubscriptionClimeAccess = () => {
 
         fetch(`http://localhost:5000/AdminSendClimeAccessUser`, {
@@ -323,17 +317,10 @@ const UserSubscriptionAllData = () => {
 
     }
 
-    // ======================================
-    //Admin Subscription Access Send End
-    // ======================================
-
-
     // ========================================
-    //Admin Subscription Access not Send Start
+    // Admin Subscription Access not Send Start
     // ========================================
-
     let HandleNotSendSubscriptionClimeAccess = () => {
-
         fetch(`http://localhost:5000/AdminNotSendClimeAccessUser`, {
             method: "PATCH",
         })
@@ -350,12 +337,8 @@ const UserSubscriptionAllData = () => {
                 }
                 refetch()
             })
-
     }
 
-    // ======================================
-    //Admin Subscription Access not Send End
-    // ======================================
 
 
     return (

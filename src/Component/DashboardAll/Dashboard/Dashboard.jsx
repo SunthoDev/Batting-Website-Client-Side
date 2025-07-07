@@ -1,4 +1,4 @@
-import React, { useContext }  from 'react';
+import React, { useContext } from 'react';
 import "./Dashboard.css"
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { FaWallet, FaShoppingCart, FaCalendarAlt, FaHome, FaHeadSideVirus } from 'react-icons/fa';
@@ -32,13 +32,13 @@ const Dashboard = () => {
 
             </div>
 
-          
-               
+
+
             <div className="drawer-side fixed">
                 <label htmlFor="my-drawer-2" className=" drawer-overlay"></label>
 
                 <ul className="menuParent menu px-6 pt-[28px] w-90 h-[100%] text-base-content">
-                
+
                     <div className='NameInformation mb-[14px]'>
 
                         <div className="img ">
@@ -57,14 +57,18 @@ const Dashboard = () => {
                     {/* admin panel  */}
 
                     <>
-                        <li className='Dashboard'> <Link to="/"> Home</Link></li>
+                        <li className='Dashboard'> <Link to="/dashboardPlant/AdminDashboard">Dashboard</Link></li>
                         <li> <NavLink to="/dashboardPlant/AdminUser"><span><FaWallet></FaWallet></span>All User</NavLink></li>
                         <li> <NavLink to="/dashboardPlant/UserAllRechargeData"><span><FaWallet></FaWallet></span>User All Recharge </NavLink></li>
                         <li> <NavLink to="/dashboardPlant/userSubscription"><span><FaWallet></FaWallet></span>User Subscription All</NavLink></li>
                         <li> <NavLink to="/dashboardPlant/UserAllWithdrawData"><span><FaWallet></FaWallet></span>User All Withdraw Data</NavLink></li>
                         <li> <NavLink to="/dashboardPlant/UpdatePaymentInfoAdmin"><span><FaWallet></FaWallet></span>Update Payment Info</NavLink></li>
-
                     </>
+
+                    {/* others panel */}
+                    <div className="divider  text-white"></div>
+
+                    <li><Link to="/"><span><FaHome></FaHome></span>Home</Link></li>
 
                 </ul>
 
