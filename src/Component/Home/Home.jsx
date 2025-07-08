@@ -33,7 +33,7 @@ const Home = () => {
     const { data: UserSubscriptionDataAll = [], refetch } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserSubscriptionDataAll");
+            const res = await fetch("https://server.e-cash-id.com/UserSubscriptionDataAll");
             return res.json();
         },
     });

@@ -9,12 +9,11 @@
     box-shadow: 0 0 10px rgb(0,0,0,.2);
 }
 .LoginParent{
-
-    background-image: url("../../../assets/AllImage/Login.jpg");
+    /* background-image: url("../../../assets/AllImage/Login.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: 100vh; */
 }
 
 .LoginParent .LogIn .MaineCard .Right{

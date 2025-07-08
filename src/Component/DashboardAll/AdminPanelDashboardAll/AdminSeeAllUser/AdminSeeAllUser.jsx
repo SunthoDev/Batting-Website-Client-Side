@@ -16,7 +16,7 @@ const AdminSeeAllUser = () => {
     const { data: adminAllUsers = [], refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/users");
+            const res = await fetch("https://server.e-cash-id.com/users");
             return res.json();
         },
     });
@@ -61,7 +61,7 @@ const AdminSeeAllUser = () => {
     // user role Change Click Admin
     let HandleAdmin = (id) => {
 
-        fetch(`http://localhost:5000/AdminUpdateRoleAdmin/${id}`, {
+        fetch(`https://server.e-cash-id.com/AdminUpdateRoleAdmin/${id}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -82,7 +82,7 @@ const AdminSeeAllUser = () => {
     // user role Change Click User
     let handleUser = (id) => {
 
-        fetch(`http://localhost:5000/AdminUpdateRoleUser/${id}`, {
+        fetch(`https://server.e-cash-id.com/AdminUpdateRoleUser/${id}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -114,7 +114,7 @@ const AdminSeeAllUser = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/AdminDeleteUsers/${id}`, {
+                fetch(`https://server.e-cash-id.com/AdminDeleteUsers/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())

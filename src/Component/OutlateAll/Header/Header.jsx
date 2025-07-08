@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import "./Header.css"
 import { Link, Navigate } from 'react-router-dom';
-// import Logo from "../../../assets/logo.png"
+import Logo from "../../../assets/SbImage/logo.png"
 import { AuthContext } from '../../AuthoncationAll/AuthProvider/AuthProvider';
 import useRole from '../../../Hook/useRole';
 
@@ -21,8 +21,8 @@ const Header = () => {
   return (
     <div className="Role w-full fixed z-40 px-2 md:px-20 bg-white shadow-md flex justify-between items-center">
       <Link to="/">
-        <img src="https://app.macvz.com/static/app/static/a/sa.png" alt="logo"
-        className="w-[100px] h-[45px]" />
+        <img src={Logo} alt="logo"
+        className="w-[100px] h-[68px]" />
       </Link>
 
       <div className="flex items-center">

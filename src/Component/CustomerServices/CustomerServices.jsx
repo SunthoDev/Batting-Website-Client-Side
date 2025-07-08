@@ -13,7 +13,7 @@ const CustomerServices = () => {
 
 
     return (
-        <div className="bg-[#F7F8FC] pt-24 h-[100vh] ">
+        <div className="bg-[#F7F8FC] pt-24 h-[100vh] px-4">
 
             <div className="CustomerServicesParent">
 

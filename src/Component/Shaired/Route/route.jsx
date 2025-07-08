@@ -60,8 +60,9 @@ let route = createBrowserRouter([
                 element: <PrivateRoute><ConfirmePayment></ConfirmePayment></PrivateRoute>
             },
             {
-                path: "BuySubscriptionPlan",
-                element: <PrivateRoute> <BuySubscriptionPlan></BuySubscriptionPlan> </PrivateRoute>
+                path: "BuySubscriptionPlan/:id",
+                element: <PrivateRoute> <BuySubscriptionPlan></BuySubscriptionPlan> </PrivateRoute>,
+                loader:({params}) => fetch(`https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/SubscriptionsInformation/${params.id}`)
             },
             {
                 path: "Withdraw",

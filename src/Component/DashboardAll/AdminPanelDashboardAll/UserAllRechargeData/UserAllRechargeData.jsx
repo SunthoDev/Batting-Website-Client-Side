@@ -10,7 +10,7 @@ const UserAllRechargeData = () => {
     const { data: userAllRechargeData = [], refetch } = useQuery({
         queryKey: ["AllRechargeData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AllRechargeData");
+            const res = await fetch("https://server.e-cash-id.com/AllRechargeData");
             return res.json();
         },
     });
@@ -24,14 +24,14 @@ const UserAllRechargeData = () => {
     let HandleApprovedRechargeStatus = (id, UserEmail, TotalAmounts) => {
         let allInfo = { TotalAmount: TotalAmounts }
 
-        fetch(`http://localhost:5000/AdminApprovedUserRechargeStatus/${id}`, {
+        fetch(`https://server.e-cash-id.com/AdminApprovedUserRechargeStatus/${id}`, {
             method: "PATCH",
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
 
-                    fetch(`http://localhost:5000/AdminUserRechargeMoneyAdd/${UserEmail}`, {
+                    fetch(`https://server.e-cash-id.com/AdminUserRechargeMoneyAdd/${UserEmail}`, {
                         method: "PATCH",
                         headers: {
                             "content-type": "application/json"
@@ -56,8 +56,6 @@ const UserAllRechargeData = () => {
             })
     }
 
-
-
     // =========================================================
     // Admin Approved User Recharge and add use balance End
     // =========================================================
@@ -78,7 +76,7 @@ const UserAllRechargeData = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/AdminDeleteRecharge/${id}`, {
+                fetch(`https://server.e-cash-id.com/AdminDeleteRecharge/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -128,7 +126,7 @@ const UserAllRechargeData = () => {
                         <tbody>
 
                             {
-                                userAllRechargeData?.map((allUserRecharge, index) => <UserAllRechargeDataSee index={index} key={allUserRecharge._id} allUserRecharge={allUserRecharge} HandleDelete={HandleDelete} HandleApprovedRechargeStatus={HandleApprovedRechargeStatus}></UserAllRechargeDataSee>)
+                                userAllRechargeData?.slice().reverse().map((allUserRecharge, index) => <UserAllRechargeDataSee index={index} key={allUserRecharge._id} allUserRecharge={allUserRecharge} HandleDelete={HandleDelete} HandleApprovedRechargeStatus={HandleApprovedRechargeStatus}></UserAllRechargeDataSee>)
                             }
 
                         </tbody>

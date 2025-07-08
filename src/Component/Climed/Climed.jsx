@@ -22,7 +22,7 @@ const Climed = () => {
     const { data: UserSubscriptionDataAll = [], refetch } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserSubscriptionDataAll");
+            const res = await fetch("https://server.e-cash-id.com/UserSubscriptionDataAll");
             return res.json();
         },
     });
@@ -47,7 +47,7 @@ const Climed = () => {
         let allInfo = { Bonus, useEmail }
         // user Update Subscription Hours  daily  
         // ===============================================
-        fetch(`http://localhost:5000/UserSubscriptionHoursUpdate/${subId}`, {
+        fetch(`https://server.e-cash-id.com/UserSubscriptionHoursUpdate/${subId}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -55,7 +55,7 @@ const Climed = () => {
                 if (data.modifiedCount > 0) {
                     // user Received  daily clime bonus 
                     // ===========================================
-                    fetch(`http://localhost:5000/UserClimeForAddBalance/${useEmail}`, {
+                    fetch(`https://server.e-cash-id.com/UserClimeForAddBalance/${useEmail}`, {
                         method: "PATCH",
                         headers: {
                             "content-type": "application/json"

@@ -13,7 +13,7 @@ const UserSubscriptionAllData = () => {
     const { data: UserSubscriptionDataAll = [], refetch } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserSubscriptionDataAll");
+            const res = await fetch("https://server.e-cash-id.com/UserSubscriptionDataAll");
             return res.json();
         },
     });
@@ -42,7 +42,7 @@ const UserSubscriptionAllData = () => {
         let SubTotalPrice = { SubscriptionPriceTotall: SubPrice }
         // Subscription Approved Here
         // ==================================
-        fetch(`http://localhost:5000/AdminUpdateUserVerifiedStatus/${SubscriptionId}`, {
+        fetch(`https://server.e-cash-id.com/AdminUpdateUserVerifiedStatus/${SubscriptionId}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -56,14 +56,14 @@ const UserSubscriptionAllData = () => {
                     if (ReferId !== "0000") {
                         // User ref status approved ref
                         // ==============================
-                        fetch(`http://localhost:5000/AdminApprovedUserRefStatus/${SubscriptionId}`, {
+                        fetch(`https://server.e-cash-id.com/AdminApprovedUserRefStatus/${SubscriptionId}`, {
                             method: "PATCH",
                         })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.modifiedCount > 0) {
                                     // User balance add use ref
-                                    fetch(`http://localhost:5000/AdminUserBalancePluseForUserRef/${ReferId}`, {
+                                    fetch(`https://server.e-cash-id.com/AdminUserBalancePluseForUserRef/${ReferId}`, {
                                         method: "PATCH",
                                         headers: {
                                             "content-type": "application/json"
@@ -75,7 +75,7 @@ const UserSubscriptionAllData = () => {
                                             // console.log(data)
                                             if (data.modifiedCount > 0) {
                                                 // User balance Decrase For Subscription Price 
-                                                fetch(`http://localhost:5000/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
+                                                fetch(`https://server.e-cash-id.com/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
                                                     method: "PATCH",
                                                     headers: {
                                                         "content-type": "application/json"
@@ -107,7 +107,7 @@ const UserSubscriptionAllData = () => {
                         // =======================================================
                         // without Refer buy subscription
                         // =======================================================
-                        fetch(`http://localhost:5000/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
+                        fetch(`https://server.e-cash-id.com/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"
@@ -144,7 +144,7 @@ const UserSubscriptionAllData = () => {
 
         // Subscription Approved Here
         // ==================================
-        fetch(`http://localhost:5000/AdminUpdateUserPendingStatus/${SubscriptionId}`, {
+        fetch(`https://server.e-cash-id.com/AdminUpdateUserPendingStatus/${SubscriptionId}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -157,14 +157,14 @@ const UserSubscriptionAllData = () => {
 
                     if (ReferId !== "0000") {
                         // User ref status Pending ref
-                        fetch(`http://localhost:5000/AdminPendingUserRefStatus/${SubscriptionId}`, {
+                        fetch(`https://server.e-cash-id.com/AdminPendingUserRefStatus/${SubscriptionId}`, {
                             method: "PATCH",
                         })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.modifiedCount > 0) {
                                     // User balance decrase use ref
-                                    fetch(`http://localhost:5000/AdminUserBalanceDecraseForUserRef/${ReferId}`, {
+                                    fetch(`https://server.e-cash-id.com/AdminUserBalanceDecraseForUserRef/${ReferId}`, {
                                         method: "PATCH",
                                         headers: {
                                             "content-type": "application/json"
@@ -175,7 +175,7 @@ const UserSubscriptionAllData = () => {
                                         .then(data => {
                                             if (data.modifiedCount > 0) {
                                                 // User balance Add For Subscription Price 
-                                                fetch(`http://localhost:5000/AdminUserBalanceBackSubscriptionCost/${id}`, {
+                                                fetch(`https://server.e-cash-id.com/AdminUserBalanceBackSubscriptionCost/${id}`, {
                                                     method: "PATCH",
                                                     headers: {
                                                         "content-type": "application/json"
@@ -206,7 +206,7 @@ const UserSubscriptionAllData = () => {
                         // =======================================================
                         // without buy subscription buy
                         // =======================================================
-                        fetch(`http://localhost:5000/AdminUserBalanceBackSubscriptionCost/${id}`, {
+                        fetch(`https://server.e-cash-id.com/AdminUserBalanceBackSubscriptionCost/${id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"
@@ -248,7 +248,7 @@ const UserSubscriptionAllData = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/AdminDeleteUsersVerified/${id}`, {
+                fetch(`https://server.e-cash-id.com/AdminDeleteUsersVerified/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -256,7 +256,7 @@ const UserSubscriptionAllData = () => {
                         if (data.deletedCount > 0) {
 
                             if (ReferId !== "") {
-                                fetch(`http://localhost:5000/AdminDeleteUsersRef/${SubscriptionId}`, {
+                                fetch(`https://server.e-cash-id.com/AdminDeleteUsersRef/${SubscriptionId}`, {
                                     method: "DELETE",
                                 })
                                     .then(res => res.json())
@@ -298,7 +298,7 @@ const UserSubscriptionAllData = () => {
     // ======================================
     let HandleSendSubscriptionClimeAccess = () => {
 
-        fetch(`http://localhost:5000/AdminSendClimeAccessUser`, {
+        fetch(`https://server.e-cash-id.com/AdminSendClimeAccessUser`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -321,7 +321,7 @@ const UserSubscriptionAllData = () => {
     // Admin Subscription Access not Send Start
     // ========================================
     let HandleNotSendSubscriptionClimeAccess = () => {
-        fetch(`http://localhost:5000/AdminNotSendClimeAccessUser`, {
+        fetch(`https://server.e-cash-id.com/AdminNotSendClimeAccessUser`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -382,10 +382,10 @@ const UserSubscriptionAllData = () => {
 
                             {UserIdValueShow.length > 0 ?
 
-                                UserIdValueShow?.map(allOrder => <UserSubscriptionSeeAllData key={allOrder._id} allOrder={allOrder} HandleApproved={HandleApproved} HandlePending={HandlePending} HandleDelete={HandleDelete} />
+                                UserIdValueShow?.slice().reverse().map(allOrder => <UserSubscriptionSeeAllData key={allOrder._id} allOrder={allOrder} HandleApproved={HandleApproved} HandlePending={HandlePending} HandleDelete={HandleDelete} />
                                 )
                                 :
-                                UserSubscriptionDataAll?.map(allOrder => <UserSubscriptionSeeAllData key={allOrder._id} allOrder={allOrder} HandleApproved={HandleApproved} HandlePending={HandlePending} HandleDelete={HandleDelete} />
+                                UserSubscriptionDataAll?.slice().reverse().map(allOrder => <UserSubscriptionSeeAllData key={allOrder._id} allOrder={allOrder} HandleApproved={HandleApproved} HandlePending={HandlePending} HandleDelete={HandleDelete} />
                                 )
                             }
 

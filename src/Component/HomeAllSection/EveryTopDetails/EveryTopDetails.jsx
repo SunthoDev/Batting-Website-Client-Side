@@ -11,6 +11,8 @@ import { AuthContext } from '../../AuthoncationAll/AuthProvider/AuthProvider';
 import useRole from '../../../Hook/useRole';
 import { FaMoneyCheckAlt } from "react-icons/fa";
 
+import MoneyFlyVideo from "../../../assets/Video/video.mp4"
+// import Video from 'public/video/video.mp4';
 import A from '../../../assets/AllImage/A.png';
 import C from '../../../assets/AllImage/C.png';
 import P from '../../../assets/AllImage/P.png';
@@ -38,7 +40,7 @@ const EveryTopDetails = () => {
     const { data: userUserAllRef = [] } = useQuery({
         queryKey: ["UserAllRef"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserAllRef");
+            const res = await fetch("https://server.e-cash-id.com/UserAllRef");
             return res.json();
         },
     });
@@ -107,7 +109,7 @@ const EveryTopDetails = () => {
             <div className="flex flex-col md:flex-row justify-between gap-4 px-4 mt-2">
                 {/* Recharge Card */}
                 {/* ====================== */}
-                <div className="flex flex-col justify-between w-full md:w-1/2 h-[110px] bg-gradient-to-br from-[#FFF3E2] to-[#FAE6C4] rounded-lg px-4 py-3"
+                <div className="flex flex-col justify-between w-full md:w-1/2 h-[110px] bg-[#c3914be4] rounded-lg px-4 py-3"
                     onClick={() => {
                         if (user && roles?.email && user?.email) {
                             navigate("/Recharge");
@@ -131,13 +133,12 @@ const EveryTopDetails = () => {
                     <h2 className="text-black text-xl font-semibold">RECHARGE</h2>
                     <div className="flex justify-between items-center mt-2">
                         <img
-                            // src="https://app.macvz.com/static/app/static/a/orange_jt.png"
                             src={R}
                             alt="icon"
                             className="w-[30px] h-[30px]"
                         />
                         <img
-                            src="https://app.macvz.com/static/app/static/a/orange_right.png"
+                            src="https://i.ibb.co/WvQs14Z6/recharge.jpg"
                             alt="arrow"
                             className="w-[65px] h-[50px] rounded-br-lg"
                         />
@@ -146,7 +147,7 @@ const EveryTopDetails = () => {
 
                 {/* Withdraw Card */}
                 {/* ====================== */}
-                <div className="flex flex-col justify-between w-full md:w-1/2 h-[110px] bg-gradient-to-br from-[#D0F8D0] to-[#92F093] rounded-lg px-4 py-3"
+                <div className="flex flex-col justify-between w-full md:w-1/2 h-[110px] bg-[#92f093a9] rounded-lg px-4 py-3"
                     onClick={() => {
                         if (user && roles?.email && user?.email) {
                             navigate("/Withdraw");
@@ -176,7 +177,7 @@ const EveryTopDetails = () => {
                             className="w-[30px] h-[30px]"
                         />
                         <img
-                            src="https://app.macvz.com/static/app/static/a/blue_right.png"
+                            src="https://i.ibb.co/8g21nmv0/withdraw.jpg"
                             alt="arrow"
                             className="w-[65px] h-[50px] rounded-br-lg"
                         />
@@ -188,13 +189,19 @@ const EveryTopDetails = () => {
             {/* Small Banner Here  */}
             {/* =============================== */}
             <h4 className="text-[16px] font-[600] text-black text-left py-4  mx-4">Reminders</h4>
-            <div className="px-4 ">
-                <div className="w-full h-[120px] rounded-lg overflow-hidden shadow-md">
-                    <img
-                        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
-                        alt="Nature Reminder"
-                        className="w-full h-full object-cover"
-                    />
+            <div className="px-4">
+                <div className="w-full h-[108] md:h-[120px] rounded-lg overflow-hidden shadow-md">
+                    <video
+                        className="w-[100%] h-full"
+                        src={MoneyFlyVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        controls={false}        // No controls
+                        disablePictureInPicture // Disable Picture in Picture mode
+                        webkit-playsinline      // Prevent fullscreen on iOS
+                    ></video>
                 </div>
             </div>
 
@@ -289,11 +296,13 @@ const EveryTopDetails = () => {
             {/* =============================== */}
             {/* MYGIFT | JOIN | CASHBACK */}
             {/* =============================== */}
-            <div className="flex flex-col md:flex-row gap-4 px-4 mt-6">
-                {/* MYGIFT */}
+            {/* <div className="flex flex-col md:flex-row gap-4 px-4 mt-6"> */}
+            <div className="flex items-center gap-4 px-4 mt-6">
+
+              {/* MYGIFT */}
                 {/* ========================= */}
-                <div className="flex-1">
-                    <div onClick={() => {
+                <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition"
+                   onClick={() => {
                         if (user && roles?.email && user?.email) {
                             navigate("/MyGift");
                         } else {
@@ -311,18 +320,20 @@ const EveryTopDetails = () => {
                                 }
                             });
                         }
-                    }}>
-                        <img
-                            src="https://static.besstmam.com/image/MYGIFT.png"
-                            alt="My Gift"
-                            className="w-full h-[254px] object-cover rounded-xl"
-                            draggable="false"
-                        />
-                    </div>
+                    }}
+                >
+                    <img
+                        src="https://i.ibb.co/8LmhsLzX/Gift.jpg"
+                        alt="MA Wallet"
+                        className="w-[60px] h-[60px] object-contain mb-2"
+                        draggable="false"
+                    />
+                    <span className="text-lg font-semibold text-black">My Gift</span>
                 </div>
 
-                {/* JOIN */}
-                <div className="flex-1"
+              {/* JOIN Spin */}
+                {/* ========================= */}
+                <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition"
                     onClick={() => {
                         if (user && roles?.email && user?.email) {
                             navigate("/Spinner");
@@ -344,22 +355,26 @@ const EveryTopDetails = () => {
                     }}
                 >
                     <img
-                        src="https://static.besstmam.com/image/JOIN.png"
-                        alt="Join"
-                        className="w-full h-[254px] object-cover rounded-xl"
+                        src="https://i.ibb.co/YTLXkdQ7/spin.jpg"
+                        alt="CHECK IN"
+                        className="w-[60px] h-[60px] object-contain mb-2"
                         draggable="false"
                     />
+                    <span className="text-lg font-semibold text-black">Join Spin</span>
                 </div>
 
                 {/* CASHBACK */}
-                <div className="flex-1">
+                {/* ========================= */}
+                <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition">
                     <img
-                        src="https://static.besstmam.com/image/CASHBACK.png"
-                        alt="Cashback"
-                        className="w-full h-[254px] object-cover rounded-xl"
+                        src="https://i.ibb.co/Gf7FwQfN/CashBack.jpg"
+                        alt="ABOUT"
+                        className="w-[60px] h-[60px] object-contain mb-2"
                         draggable="false"
                     />
+                    <span className="text-lg font-semibold text-black">Cash Back</span>
                 </div>
+
             </div>
 
             {/* ============================================= */}

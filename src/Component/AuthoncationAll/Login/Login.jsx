@@ -82,14 +82,13 @@ const Login = () => {
 
     return (
 
-        <div className='LoginParent pt-[134px] '>
+        <div className='LoginParent bg-white pt-[134px] pb-[68px] px-4'>
 
             <ToastContainer />
 
-            <div className='LogIn w-[100%] lg:w-[440px] mx-auto rounded-[4px]'>
+            <div className='LogIn w-[100%] lg:w-[440px] mx-auto rounded-[4px] '>
 
                 <div className='MaineCard'>
-
                     <div className="Right">
 
                         <h2 className='text-[27px] font-[500] text-black pt-[28px] text-center'>LOGIN</h2>
@@ -97,13 +96,13 @@ const Login = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className='FromData px-3 md:px-[20px]' >
 
                             <div className='relative'>
-                                <input className='mt-[23px] text-black text-[14px] font-[600] rounded-[6px] py-[14px] px-[24px] w-[100%]' placeholder='Email' type="email" {...register("email", { required: true })} name='email' />
+                                <input className='mt-[23px] bg-white text-black text-[14px] font-[600] rounded-[6px] py-[14px] px-[24px] w-[100%]' placeholder='Email' type="email" {...register("email", { required: true })} name='email' />
                                 <h4 className='absolute font-[600] top-[34px] right-[22px] text-[18px]'>@</h4>
                                 {errors.email && <span className='text-red-600 font-semibold'>Your Email  is required</span>}
                             </div>
 
                             <div className='relative'>
-                                <input className='mt-[23px] text-black text-[14px] font-[600] rounded-[6px] py-[14px] px-[24px] w-[100%]' placeholder=' Password' type={xx == true ? "password" : "text"}    {...register("Password", { required: true })} name='Password' />
+                                <input className='mt-[23px] bg-white text-black text-[14px] font-[600] rounded-[6px] py-[14px] px-[24px] w-[100%]' placeholder=' Password' type={xx == true ? "password" : "text"}    {...register("Password", { required: true })} name='Password' />
                                 <button onClick={() => setXx(!xx)} className='absolute top-[34px] right-[22px] text-[18px]'>
                                     <i className={xx === true ? "fa fa-lock" : "fa fa-unlock"} aria-hidden="true"></i>
                                 </button>
@@ -126,7 +125,7 @@ const Login = () => {
                             {/* <ToastContainer /> */}
 
                             {/* ========================= */}
-                            <h3 className="mt-[23px] mb-[18px] text-[14px] font-[400] text-white ">Don’t have an account? <Link className='text-[#f93333] text-[15px] font-[500] ' to="/singUp/0000">Register</Link></h3>
+                            <h3 className="mt-[23px] mb-[18px] text-[14px] font-[400] text-black ">Don’t have an account? <Link className='text-[#f93333] text-[15px] font-[500] ' to="/singUp/0000">Register</Link></h3>
 
                         </form>
 

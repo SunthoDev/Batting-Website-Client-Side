@@ -16,7 +16,7 @@ const AllBankCard = () => {
         const accountHolder = e.target.accountHolder.value;
         let allInfo = { bankName, accountNumber, accountHolder };
 
-        fetch(`http://localhost:5000/UserUpdateHisBankInformation/${roles?._id}`, {
+        fetch(`https://server.e-cash-id.com/UserUpdateHisBankInformation/${roles?._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
@@ -44,7 +44,7 @@ const AllBankCard = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10">
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10 pt-[68px] pb-[88px]">
             <div className="w-full max-w-md">
                 <h2 className="text-[16px] font-bold bg-green-800 p-4 text-white mb-6 text-center">Bank Info</h2>
                 <form

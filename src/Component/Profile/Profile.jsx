@@ -13,6 +13,8 @@ import R from '../../assets/AllImage/R.png';
 import aboutUs from '../../assets/AllImage/aboutUs.png';
 import help from '../../assets/AllImage/help.png';
 import { useNavigate } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Profile = () => {
 
@@ -57,7 +59,7 @@ const Profile = () => {
     const { data: userUserAllRef = [] } = useQuery({
         queryKey: ["UserAllRef"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserAllRef");
+            const res = await fetch("https://server.e-cash-id.com/UserAllRef");
             return res.json();
         },
     });
@@ -83,7 +85,7 @@ const Profile = () => {
     const { data: userAllRechargeData = [], refetch } = useQuery({
         queryKey: ["AllRechargeData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AllRechargeData");
+            const res = await fetch("https://server.e-cash-id.com/AllRechargeData");
             return res.json();
         },
     });
@@ -101,7 +103,7 @@ const Profile = () => {
     const { data: userAllWithdrawData = [] } = useQuery({
         queryKey: ["UserAllWithdrawData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserAllWithdrawData");
+            const res = await fetch("https://server.e-cash-id.com/UserAllWithdrawData");
             return res.json();
         },
     });
@@ -122,7 +124,7 @@ const Profile = () => {
     const { data: UserSubscriptionDataAll = [], } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserSubscriptionDataAll");
+            const res = await fetch("https://server.e-cash-id.com/UserSubscriptionDataAll");
             return res.json();
         },
     });
@@ -140,10 +142,14 @@ const Profile = () => {
     // console.log(MySubscriptionBuyAllAmount);
 
 
-
+    // User can copy uid
+    // =======================================
+    const notify = () => toast.success("your UID copied!");
 
     return (
-        <div className="bg-gradient-to-r from-green-500 to-green-400 pt-[100px] pb-[100px]">
+        <div className="bg-gradient-to-r from-green-500 to-green-400 pt-[80px] pb-[100px]">
+
+            <ToastContainer />
 
             <div className="bg-gradient-to-r from-green-500 to-green-400 p-4 rounded-b-xl text-white relative">
                 {/* =================================================== */}
@@ -161,7 +167,17 @@ const Profile = () => {
                         </div>
                         <div>
                             <h3 className="text-left text-xl font-bold">{name} {LastName}</h3>
-                            <p className="text-left text-sm">My Id: {userId}</p>
+                            <p className="text-left text-sm font-[600]">My UID: {userId}
+                                <CopyToClipboard text={`${userId}`}>
+                                    <button
+                                        onClick={notify}
+                                        className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold px-4 py-2 rounded-[8px] ml-[8px] hover:scale-105 transition duration-300 shadow-md"
+                                    >
+                                        📋 Copy Now
+                                    </button>
+                                </CopyToClipboard>
+
+                            </p>
                         </div>
                     </div>
                     <img
@@ -185,7 +201,7 @@ const Profile = () => {
                             // clipPath: 'polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%)',
                         }}
                         onClick={() => {
-                            roles?.bankName && roles?.accountNumber && roles?.accountHolder ? "" :
+                            // roles?.bankName && roles?.accountNumber && roles?.accountHolder ? "" :
                             navigate("/AllBankCard")
                         }}
                     >
@@ -288,7 +304,6 @@ const Profile = () => {
                     </div>
 
                 </div>
-
 
                 {/* =================================================== */}
                 {/* Level Bar */}
@@ -483,7 +498,7 @@ const Profile = () => {
                         let allInfo = { firstName, lastName };
                         // console.log(allInfo)
 
-                        fetch(`http://localhost:5000/UserUpdateHisInformation/${roles?._id}`, {
+                        fetch(`https://server.e-cash-id.com/UserUpdateHisInformation/${roles?._id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"

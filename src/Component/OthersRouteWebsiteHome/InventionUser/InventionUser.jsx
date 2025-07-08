@@ -15,10 +15,8 @@ const InventionUser = () => {
     const notify = () => toast.success("Referral link copied!");
 
 
-
-
     return (
-        <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] min-h-screen pt-24 text-white">
+        <div className="bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] min-h-screen pb-[100px] pt-24 text-white">
             <ToastContainer />
 
             <div className="InventionUserParent space-y-6 px-4">
@@ -39,9 +37,9 @@ const InventionUser = () => {
                     <h4 className="text-lg font-semibold mb-3">📢 Share your referral link</h4>
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                         <p className="bg-[#333] text-sm px-4 py-2 rounded w-full md:w-auto break-all border border-gray-700">
-                            https://therealmoneyplant.com/singUp/{referId}
+                            https://e-cash-id.com/singUp/{referId}
                         </p>
-                        <CopyToClipboard text={`https://therealmoneyplant.com/singUp/${referId}`}>
+                        <CopyToClipboard text={`https://e-cash-id.com/singUp/${referId}`}>
                             <button
                                 onClick={notify}
                                 className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold px-4 py-2 rounded hover:scale-105 transition duration-300 shadow-md"

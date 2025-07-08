@@ -23,7 +23,7 @@ const MyGift = () => {
     const { data: AllCouponCode = [] } = useQuery({
         queryKey: ["AdminDashboardAllWorkHere-AllCouponCode"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AdminDashboardAllWorkHere/AllCouponCode");
+            const res = await fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/AllCouponCode");
             return res.json();
         },
     });
@@ -59,7 +59,7 @@ const MyGift = () => {
 
             // User provided coupon code status change for use !!
             // ===================================================
-            fetch(`http://localhost:5000/AdminDashboardAllWorkHere/UpdateCouponStatusToUsed/${CheckCouponHere?._id}`, {
+            fetch(`https://server.e-cash-id.com/AdminDashboardAllWorkHere/UpdateCouponStatusToUsed/${CheckCouponHere?._id}`, {
                 method: "PATCH",
             })
                 .then(res => res.json())
@@ -68,7 +68,7 @@ const MyGift = () => {
 
                         // User Balance will be add for use coupon bonus
                         // ===================================================
-                        fetch(`http://localhost:5000/AdminDashboardAllWorkHere/UserBalanceAddBonusForUseACouponRefer/${roles?.userId}`, {
+                        fetch(`https://server.e-cash-id.com/AdminDashboardAllWorkHere/UserBalanceAddBonusForUseACouponRefer/${roles?.userId}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"

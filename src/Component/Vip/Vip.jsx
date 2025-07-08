@@ -14,55 +14,48 @@ const Vip = () => {
     let navigate = useNavigate();
 
     // ===================================================================
-    //  // user All Subscription Data Start 
+    //  // All VIP Data Get Here 
     // ===================================================================
     const { data: UserVIPAllData = [], refetch } = useQuery({
         queryKey: ["VIPAllData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/VIPAllData");
+            const res = await fetch("https://server.e-cash-id.com/VIPAllData");
             return res.json();
         },
     });
-
     // console.log(UserVIPAllData)
 
     // ===================================================================
-    //  // user All Subscription Data End
+    //  // My all REfer Data Get Here
     // ===================================================================
-    // ===================================================================
-    //  // All My VIP Refer Find  Start
-    // ===================================================================
-
     const { data: userUserAllRef = [] } = useQuery({
         queryKey: ["UserAllRef"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/UserAllRef");
+            const res = await fetch("https://server.e-cash-id.com/UserAllRef");
             return res.json();
         },
     });
 
-
     // there are all refer vip date here
+    // =====================================
     let useUserReferVIPAll = []
 
     // filter active user ref VIP data all 
+    // =====================================
     if (user?.email && roles?.email) {
-        useUserReferVIPAll = userUserAllRef?.filter(RefUser => RefUser?.useRefCode === roles?.referId && RefUser?.status === "approved" && RefUser?.VIPReferUse === "yes")
+        useUserReferVIPAll = userUserAllRef?.filter(RefUser => RefUser?.useRefCode === roles?.referId && RefUser?.status === "approved")
     }
 
     // console.log(useUserReferVIPAll)
-
     // ===================================================================
     //  // All My VIP Refer Find  End
     // ===================================================================
     
 
 
-
-
     return (
-        <div className="bg-[#F7F8FC] pt-24 ">
-            <div className="VIPParent pb-24">
+        <div className="bg-[#F7F8FC] pt-12">
+            <div className="VIPParent pb-24 mx-4 ">
 
                 <div className="VIPTop w-[100%]  text-white bg-[#3CCC70] md:w-[40%] mx-auto mt-6">
                     <div className="img">

@@ -14,7 +14,7 @@ const RechargeHistory = () => {
     const { data: userAllRechargeData = [], refetch } = useQuery({
         queryKey: ["AllRechargeData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AllRechargeData");
+            const res = await fetch("https://server.e-cash-id.com/AllRechargeData");
             return res.json();
         },
     });
@@ -29,7 +29,7 @@ const RechargeHistory = () => {
 
     return (
         <div className="bg-white pt-[120px]">
-            <div className="bg-white px-4 py-6 md:w-[64%] w-full h-screen mx-6 md:mx-auto rounded-md shadow-md">
+            <div className="bg-white px-4 py-6 md:w-[64%] w-full h-screen md:mx-auto rounded-md shadow-md">
                 <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">Recharge History</h2>
 
                 {MyAllRechargeData.length === 0 ? (

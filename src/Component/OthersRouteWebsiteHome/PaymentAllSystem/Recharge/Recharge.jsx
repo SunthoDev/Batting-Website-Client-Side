@@ -55,7 +55,7 @@ const Recharge = () => {
   const { data: AdminPaymentStatusData = [], refetch } = useQuery({
     queryKey: ["AdminPaymentStatusData"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/AdminPaymentStatusData");
+      const res = await fetch("https://server.e-cash-id.com/AdminPaymentStatusData");
       return res.json();
     },
   });

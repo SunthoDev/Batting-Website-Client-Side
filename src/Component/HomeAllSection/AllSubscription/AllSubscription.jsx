@@ -19,22 +19,33 @@ import five from "../../../assets/SbImage/five.jpeg"
 
 const AllSubscription = () => {
 
-    let { user, loading, setSubscriptionPrice } = useContext(AuthContext);
+    let { user, loading } = useContext(AuthContext);
     const [roles] = useRole()
     const userStatus = roles?.email && user?.email;
     let navigate = useNavigate();
     let location = useLocation();
     // console.log(roles);
 
+    // ===================================================================
+    //  // user All Subscription Data 
+    // ===================================================================
+    const { data: SubscriptionData = [], refetch } = useQuery({
+        queryKey: ["AdminMaleSubscriptionAllOthers-AllSubscriptions"],
+        queryFn: async () => {
+            const res = await fetch("https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/AllSubscriptions");
+            return res.json();
+        },
+    });
+    // console.log(SubscriptionData)
+
     // ====================================================
     // Subscription Buy for go to another page  Start
     // ====================================================
-    let HandleBuySubscription = (Price, number) => {
+    let HandleBuySubscription = (id) => {
 
         if (user && roles?.email && user?.email) {
 
-            setSubscriptionPrice([Price, number])
-            navigate("/BuySubscriptionPlan")
+            navigate(`/BuySubscriptionPlan/${id}`)
 
         } else {
 
@@ -54,22 +65,6 @@ const AllSubscription = () => {
                 })
         }
     }
-    // ====================================================
-    // Subscription Buy for go to another page  Start
-    // ====================================================
-
-    let [SubscriptionData, setSubscriptionData] = useState([])
-    useEffect(() => {
-        fetch("subscription.json")
-            .then(res => res.json())
-            .then(data => setSubscriptionData(data))
-    }, [])
-
-    // console.log(SubscriptionData)
-
-
-
-
 
 
 
@@ -96,28 +91,30 @@ const AllSubscription = () => {
                             <div className="grid grid-cols-2 gap-4 text-center mb-4">
                                 <div>
                                     <h3 className="text-xl font-bold text-green-400">৳{Subscription?.SubscriptionPrice}</h3>
-                                    <h4 className="text-sm text-gray-300">ইউনিট মূল্য</h4>
+                                    <h4 className="text-sm text-gray-300">Subscription Price</h4>
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-blue-400">৳{Subscription?.DailyProfit}</h3>
-                                    <h4 className="text-sm text-gray-300">দৈনিক লাভ</h4>
+                                    <h4 className="text-sm text-gray-300">Daily Bonus</h4>
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-yellow-300">৳{Subscription?.TotalProfit}</h3>
-                                    <h4 className="text-sm text-gray-300">মোট লাভ</h4>
+                                    <h4 className="text-sm text-gray-300">Total Profit</h4>
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-pink-400">{Subscription?.SubscriptionDate}</h3>
-                                    <h4 className="text-sm text-gray-300">সীমা</h4>
+                                    <h4 className="text-sm text-gray-300">Subscription Duration</h4>
                                 </div>
                             </div>
 
                             {/* Button */}
                             <button
-                                onClick={() => HandleBuySubscription(Subscription?.SubscriptionPrice, Subscription?.id)}
+                                onClick={() =>
+                                    HandleBuySubscription(Subscription?._id)
+                                }
                                 className="w-full py-2 bg-gradient-to-r from-green-400 to-lime-400 hover:from-lime-500 hover:to-green-500 text-black font-bold rounded-lg transition duration-300"
                             >
-                                🛒 এখন কিনুন
+                                🛒 Buy Now
                             </button>
                         </div>
                     )

@@ -8,14 +8,14 @@ import { useQuery } from '@tanstack/react-query';
 const UpdatePaymentInfoAdmin = () => {
 
 
-        // ======================================================
+    // ======================================================
     // Payment Selected Status Find and Apply Start
     // ======================================================
 
     const { data: AdminPaymentStatusData = [], refetch } = useQuery({
         queryKey: ["AdminPaymentStatusData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AdminPaymentStatusData");
+            const res = await fetch("https://server.e-cash-id.com/AdminPaymentStatusData");
             return res.json();
         },
     });
@@ -45,7 +45,7 @@ const UpdatePaymentInfoAdmin = () => {
 
         // console.log(allInfo)
 
-        fetch(`http://localhost:5000/AdminUpdatePaymentStatusAndNumber/${paymentTypeAdmin?._id}`, {
+        fetch(`https://server.e-cash-id.com/AdminUpdatePaymentStatusAndNumber/${paymentTypeAdmin?._id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
@@ -96,22 +96,18 @@ const UpdatePaymentInfoAdmin = () => {
                             <span className="ToyName label-text">Update Your Number</span>
                         </label>
                         <label className=" input-group w-full">
-                            <span>Your Use Number ({paymentTypeAdmin?.number})</span>
+                            <span className="text-black text-left">Your Use Number ({paymentTypeAdmin?.number})</span>
                             <input type="text" name='Number' defaultValue={paymentTypeAdmin?.number} placeholder=" Give me Number " className="input input-bordered input-accent w-full " />
                         </label>
                     </div>
-
 
                     <div className=" form-control">
                         <label className="label">
                             <span className="ToyName label-text"> Select Payment Type </span>
                         </label>
                         <label className=" input-group w-full">
-                            <span>Your Payment Type Use ({paymentTypeAdmin?.payment}) </span> <br />
-                            <select name='PaymentType' className="select select-success w-[100%] ">
-                                <option>Bkash</option>
-                                <option>Nagad</option>
-                            </select>
+                            <span className="text-black text-left">Your Payment Type Use ({paymentTypeAdmin?.payment}) </span> <br />
+                            <input type="text" name='PaymentType' defaultValue={paymentTypeAdmin?.payment} placeholder=" Give me Number " className="input input-bordered input-accent w-full " />
                         </label>
                     </div>
 
@@ -120,6 +116,7 @@ const UpdatePaymentInfoAdmin = () => {
                 <input type="submit" className="btn text-white bg-[#1E8F85] w-full mt-8" value="Update Status" />
 
             </form>
+
         </div>
     );
 };

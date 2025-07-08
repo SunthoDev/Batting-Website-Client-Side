@@ -14,13 +14,12 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
     // =============================================
     // User send request VIP clime data Start
     // =============================================
-
     let handleVIPClime = (VIPNum, VIPBunas, Email) => {
 
         let allInfo = { ClimeVIPNum: VIPNum, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email }
         let VIPTotalBalance = { UserVIPBunas: VIPBunas }
 
-        fetch("http://localhost:5000/ClimeVipDataAllAdd", {
+        fetch("https://server.e-cash-id.com/ClimeVipDataAllAdd", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -31,7 +30,7 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
             .then(data => {
                 if (data.insertedId) {
                     // User balance add VIP Bonus
-                    fetch(`http://localhost:5000/VIPBonusUserBalanceAdd/${Email}`, {
+                    fetch(`https://server.e-cash-id.com/VIPBonusUserBalanceAdd/${Email}`, {
                         method: "PATCH",
                         headers: {
                             "content-type": "application/json"
@@ -57,7 +56,6 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
                 }
             })
     }
-
     // =============================================
     // User send request VIP clime data End
     // =============================================
@@ -66,11 +64,12 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
     //  // User Clime VIP Data All Find Start
     // ===================================================================
 
-    // user all Climed VIP data 
+    // user all Clime VIP data
+    // =================================== 
     const { data: userAllClimeVIPData = [] } = useQuery({
         queryKey: ["ClimeVipDataAll"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/ClimeVipDataAll");
+            const res = await fetch("https://server.e-cash-id.com/ClimeVipDataAll");
             return res.json();
         },
     });
@@ -81,11 +80,11 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
     // console.log(VIPUserAllClimeData)
 
     // My All Climed VIP data VIPNum  Find
-    const ClimeNumberVIP = new Set(VIPUserAllClimeData.map(ClimeNumber => ClimeNumber.ClimeVIPNum));
+    const ClimeNumberVIP = new Set(VIPUserAllClimeData?.map(ClimeNumber => ClimeNumber.ClimeVIPNum));
 
     // Check My all Climed VIP data for Disable 
     const VIPClimedDataAllDisable = ClimeNumberVIP.has(VIPNum);
-    console.log(VIPClimedDataAllDisable)
+    // console.log(VIPClimedDataAllDisable)
 
 
     // ===================================================================
@@ -129,52 +128,4 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
 };
 
 export default VIPDetails;
-
-
-// first
-
-// {
-//     useUserReferVIPAll?.length === CountRef
-//         ?
-//         <button
-//             className="VIPButton"
-//             onClick={() => handleVIPClime(VIPNum, VIPBunas, roles?.email)}
-//             disabled={VIPClimedDataAllDisable}
-//         >
-
-//             {VIPClimedDataAllDisable ? "VIP Bonus Already Claimed" : "VIP Bonus Clime Now"}
-
-//         </button>
-//         :
-//         <Link to="/InventionUser"><button className="VIPButton">
-//             Invention Your Friends
-//         </button></Link>
-// }
-
-
-
-
-
-
-// second
-// {
-//     useUserReferVIPAll?.length === CountRef
-//         ?
-//         <button
-//             className="VIPButton"
-//             onClick={() => handleVIPClime(VIPNum, VIPBunas, roles?.email)}
-//             disabled={VIPClimedDataAllDisable}
-//         >
-
-//             {VIPClimedDataAllDisable ? "VIP Bonus Already Claimed" : "VIP Bonus Clime Now"}
-
-//         </button>
-//         : VIPClimedDataAllDisable ?
-//             <button className="VIPButton">VIP Bonus Already Claimed</button>
-//             :
-//             <Link to="/InventionUser">
-//                 <button className="VIPButton">
-//                     Invention Your Friends
-//                 </button></Link>
-// }
 

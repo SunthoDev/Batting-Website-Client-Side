@@ -26,6 +26,7 @@ const ConfirmePayment = () => {
   }, [paymentInfo, navigate]);
 
 
+  // ======================================
 // Payment submit Data User
 // ======================================
   let handleSubmit = (e) => {
@@ -37,7 +38,7 @@ const ConfirmePayment = () => {
     let allInfo = { PayTrxId, PaymentIdUser, TotalAmount: paymentInfo[0], AccountNumber: paymentInfo[1], payType: paymentInfo[2], status: "pending", UserName: roles?.name, UserEmail: roles?.email, }
     // console.log(allInfo)
 
-    fetch("http://localhost:5000/userPaymentRequest", {
+    fetch("https://server.e-cash-id.com/userPaymentRequest", {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -60,29 +61,24 @@ const ConfirmePayment = () => {
       })
   }
 
-  // ======================================================
-  // Payment Selected Status Find and Apply Start
-  // ======================================================
 
+  // ======================================================
+  // Admin Update Payment Information to Here
+  // ======================================================
   const { data: AdminPaymentStatusData = [], refetch } = useQuery({
     queryKey: ["AdminPaymentStatusData"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/AdminPaymentStatusData");
+      const res = await fetch("https://server.e-cash-id.com/AdminPaymentStatusData");
       return res.json();
     },
   });
   let paymentTypeAdmin = AdminPaymentStatusData[0]
-
   // console.log(paymentTypeAdmin)
 
 
-  // ======================================================
-  // Payment Selected Status Find and Apply End
-  // ======================================================
-
 
   return (
-    <div className="bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen text-white px-4">
+    <div className="bg-white  min-h-screen pb-[40px] text-white px-4">
       <div className="ConfirmedPayment py-24 md:py-20 w-full md:w-[500px] mx-auto">
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -92,7 +88,7 @@ const ConfirmePayment = () => {
 
           <div className="flex justify-between items-center bg-gray-800 p-4 rounded-lg shadow-md">
             <h3 className="font-medium text-gray-300">Our Payment Number</h3>
-            <h4 className="text-lg font-semibold text-white">{paymentTypeAdmin?.number ? paymentTypeAdmin?.number : "01754314001"}</h4>
+            <h4 className="text-lg font-semibold text-white">{paymentTypeAdmin?.number ? paymentTypeAdmin?.number : "017****4004"} <br/> <span className="text-left text-[12px] text-green-800">{paymentTypeAdmin?.payment}</span></h4>
           </div>
 
           <div className="flex justify-between items-center bg-gray-800 p-4 rounded-lg shadow-md">

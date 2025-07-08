@@ -1,6 +1,6 @@
 import React from 'react';
 import "./DashboardHeader.css"
-import logo from "../../../assets/AllImage/logo.png"
+import Logo from "../../../assets/SbImage/logo.png"
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthoncationAll/AuthProvider/AuthProvider';
@@ -26,9 +26,9 @@ const DashboardHeader = () => {
 
                 {/* Dashboard sidebar open drawer */}
 
-                <label htmlFor="my-drawer-2" className="btn w-[60px] md:hidden"><i class="fa text-black text-2xl fa-bars" aria-hidden="true"></i></label>
+                <label htmlFor="my-drawer-2" className="btn w-[60px] md:hidden"><i class="fa text-white text-2xl fa-bars" aria-hidden="true"></i></label>
                 <div className="w-[6%]">
-                    <img className='w-[100%]' src={logo} alt="img" />
+                    <img className='w-[100%]' src={Logo} alt="img" />
                 </div>
 
 
@@ -57,14 +57,14 @@ const DashboardHeader = () => {
 
 
                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
+                        {/* <li>
                             <Link to="/UserProfile" className="justify-between">
                                 Profile
                                 <span className="badge">New</span>
                             </Link>
                         </li>
                         <li onClick={handleSendRequest}><a>Delete Account</a></li>
-                        <hr />
+                        <hr /> */}
                         <li><button onClick={handelLogOut}>Logout</button></li>
                     </ul>
 
