@@ -26,23 +26,23 @@ const Recharge = () => {
     setError("")
 
     let TotalAmount = e.target.Amount.value
-    let number = e.target.numbers.value
-    let PayType = e.target.PaymentType.value
+    // let number = e.target.numbers.value
+    // let PayType = e.target.PaymentType.value
 
-    if (PayType !== "Bkash" && PayType !== "Nagad") {
-      setError("Select Proper Payment Method");
-      return;
-    }
+    // if (PayType !== "Bkash" && PayType !== "Nagad") {
+    //   setError("Select Proper Payment Method");
+    //   return;
+    // }
     if (TotalAmount < 400) {
       setError("You must do a minimum recharge of 400 tk");
       return;
     }
-    if (number.length < 11) {
-      setError("You must give me a 11 character number");
-      return;
-    }
+    // if (number.length < 11) {
+    //   setError("You must give me a 11 character number");
+    //   return;
+    // }
 
-    setPaymentInfo([TotalAmount, number, PayType])
+    setPaymentInfo([TotalAmount])
     navigate("/ConfirmePayment")
 
   }
@@ -55,7 +55,7 @@ const Recharge = () => {
   const { data: AdminPaymentStatusData = [], refetch } = useQuery({
     queryKey: ["AdminPaymentStatusData"],
     queryFn: async () => {
-      const res = await fetch("https://server.e-cash-id.com/AdminPaymentStatusData");
+      const res = await fetch("https://test.e-cash-id.com/AdminPaymentStatusData");
       return res.json();
     },
   });
@@ -110,17 +110,18 @@ const Recharge = () => {
             </div>
 
             {/* Payment Info */}
+
             <div className="bg-gray-900 rounded-lg p-4 space-y-4">
-              <h2 className="text-sm font-medium text-gray-300">Your Account</h2>
-              <input
+              {/* <h2 className="text-sm font-medium text-gray-300">Your Account</h2> */}
+              {/* <input
                 required
                 type="number"
                 name="numbers"
                 className="w-full bg-gray-800 border border-gray-600 rounded px-4 py-2 text-white placeholder-gray-400 focus:outline-none"
                 placeholder="e.g. 01XXXXXXXXX"
-              />
+              /> */}
 
-              <h2 className="text-sm font-medium text-gray-300 mt-4">Payment Channel</h2>
+              {/* <h2 className="text-sm font-medium text-gray-300 mt-4">Payment Channel</h2>
               <select
                 required
                 name="PaymentType"
@@ -129,7 +130,7 @@ const Recharge = () => {
                 <option disabled selected>Select your payment method</option>
                 <option>Bkash</option>
                 <option>Nagad</option>
-              </select>
+              </select> */}
 
               {/* Error Show */}
               {error && (
@@ -144,6 +145,7 @@ const Recharge = () => {
                 Proceed to Payment
               </button>
             </div>
+
           </div>
         </form>
       </div>

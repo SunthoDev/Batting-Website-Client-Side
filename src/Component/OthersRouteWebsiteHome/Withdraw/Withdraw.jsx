@@ -44,7 +44,7 @@ const Withdraw = () => {
         let allInfo = { PaymentNumber, paymentType, RequestBalance, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", WithdrawId, Date }
         // console.log(allInfo)
 
-        fetch("https://server.e-cash-id.com/UserSendWithdrawRequest", {
+        fetch("https://test.e-cash-id.com/UserSendWithdrawRequest", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -75,7 +75,7 @@ const Withdraw = () => {
     const { data: userAllWithdrawData = [] } = useQuery({
         queryKey: ["UserAllWithdrawData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserAllWithdrawData");
+            const res = await fetch("https://test.e-cash-id.com/UserAllWithdrawData");
             return res.json();
         },
     });
@@ -98,7 +98,7 @@ const Withdraw = () => {
     // const { data: AdminPaymentStatusData = [] } = useQuery({
     //     queryKey: ["AdminPaymentStatusData"],
     //     queryFn: async () => {
-    //         const res = await fetch("https://server.e-cash-id.com/AdminPaymentStatusData");
+    //         const res = await fetch("https://test.e-cash-id.com/AdminPaymentStatusData");
     //         return res.json();
     //     },
     // });

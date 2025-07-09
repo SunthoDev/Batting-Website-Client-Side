@@ -19,7 +19,7 @@ const Vip = () => {
     const { data: UserVIPAllData = [], refetch } = useQuery({
         queryKey: ["VIPAllData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/VIPAllData");
+            const res = await fetch("https://test.e-cash-id.com/VIPAllData");
             return res.json();
         },
     });
@@ -31,7 +31,7 @@ const Vip = () => {
     const { data: userUserAllRef = [] } = useQuery({
         queryKey: ["UserAllRef"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserAllRef");
+            const res = await fetch("https://test.e-cash-id.com/UserAllRef");
             return res.json();
         },
     });

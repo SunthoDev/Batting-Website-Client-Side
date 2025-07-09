@@ -10,7 +10,7 @@ const UserAllWithdrawData = () => {
     const { data: userAllWithdrawData = [], refetch } = useQuery({
         queryKey: ["UserAllWithdrawData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserAllWithdrawData");
+            const res = await fetch("https://test.e-cash-id.com/UserAllWithdrawData");
             return res.json();
         },
     });
@@ -22,7 +22,7 @@ const UserAllWithdrawData = () => {
         let allInfo = { RequestBalance }
 
         // user balance decrease
-        fetch(`https://server.e-cash-id.com/AdminaWithdrawRequestUserBalanceDecrease/${userId}`, {
+        fetch(`https://test.e-cash-id.com/AdminaWithdrawRequestUserBalanceDecrease/${userId}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
@@ -34,7 +34,7 @@ const UserAllWithdrawData = () => {
             
                 if (data.modifiedCount > 0) {
                     //  admin approved withdraw status 
-                    fetch(`https://server.e-cash-id.com/AdminWithdrawRequestApproved/${id}`, {
+                    fetch(`https://test.e-cash-id.com/AdminWithdrawRequestApproved/${id}`, {
                         method: "PATCH",
                     })
                         .then(res => res.json())
@@ -69,7 +69,7 @@ const UserAllWithdrawData = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://server.e-cash-id.com/AdminDeleteWithdrawData/${id}`, {
+                fetch(`https://test.e-cash-id.com/AdminDeleteWithdrawData/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())

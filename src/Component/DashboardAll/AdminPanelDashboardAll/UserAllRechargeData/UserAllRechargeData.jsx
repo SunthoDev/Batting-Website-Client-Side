@@ -10,7 +10,7 @@ const UserAllRechargeData = () => {
     const { data: userAllRechargeData = [], refetch } = useQuery({
         queryKey: ["AllRechargeData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AllRechargeData");
+            const res = await fetch("https://test.e-cash-id.com/AllRechargeData");
             return res.json();
         },
     });
@@ -24,14 +24,14 @@ const UserAllRechargeData = () => {
     let HandleApprovedRechargeStatus = (id, UserEmail, TotalAmounts) => {
         let allInfo = { TotalAmount: TotalAmounts }
 
-        fetch(`https://server.e-cash-id.com/AdminApprovedUserRechargeStatus/${id}`, {
+        fetch(`https://test.e-cash-id.com/AdminApprovedUserRechargeStatus/${id}`, {
             method: "PATCH",
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
 
-                    fetch(`https://server.e-cash-id.com/AdminUserRechargeMoneyAdd/${UserEmail}`, {
+                    fetch(`https://test.e-cash-id.com/AdminUserRechargeMoneyAdd/${UserEmail}`, {
                         method: "PATCH",
                         headers: {
                             "content-type": "application/json"
@@ -76,7 +76,7 @@ const UserAllRechargeData = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://server.e-cash-id.com/AdminDeleteRecharge/${id}`, {
+                fetch(`https://test.e-cash-id.com/AdminDeleteRecharge/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -105,14 +105,14 @@ const UserAllRechargeData = () => {
         <div className='UserDataAdmin bg-white '>
 
         
-            <div className='userData bg-[#F6F6F6] rounded-[7px] mx-0 md:mx-6 my-8 px-4 py-8'>
+            <div className='userData bg-[#F6F6F6] rounded-[7px] mx-0 md:mx-2 my-8 px-4 py-8'>
 
             <h2 className="text-center font-[600] text-[18px] text-black pb-[14px]">Total User : {userAllRechargeData.length}</h2>
                 <div className="overflow-x-auto">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th className="text-[14px] font-[600] text-white">Number</th>
+                                <th className="text-[14px] font-[600] text-white">Image</th>
                                 <th className="text-[14px] font-[600] text-white">Name</th>
                                 <th className="text-[14px] font-[600] text-white">Total Amount</th>
                                 <th className="text-[14px] font-[600] text-white">Account Num</th>

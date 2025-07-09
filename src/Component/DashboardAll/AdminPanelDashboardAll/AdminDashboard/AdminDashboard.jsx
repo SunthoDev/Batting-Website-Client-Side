@@ -26,7 +26,7 @@ const AdminDashboard = () => {
     const { data: AllBannerOfWebsite = [], refetch } = useQuery({
         queryKey: ["AdminDashboardAllWorkHere-AllBanner"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/AllBanner");
+            const res = await fetch("https://test.e-cash-id.com/AdminDashboardAllWorkHere/AllBanner");
             return res.json();
         },
     });
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
 
                     // save user Database 
                     // ==========================
-                    fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/BannerPost", {
+                    fetch("https://test.e-cash-id.com/AdminDashboardAllWorkHere/BannerPost", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"
@@ -102,7 +102,7 @@ const AdminDashboard = () => {
     const { data: AllCouponCode = [] } = useQuery({
         queryKey: ["AdminDashboardAllWorkHere-AllCouponCode"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/AllCouponCode");
+            const res = await fetch("https://test.e-cash-id.com/AdminDashboardAllWorkHere/AllCouponCode");
             return res.json();
         },
     });
@@ -116,7 +116,7 @@ const AdminDashboard = () => {
     const { data: SubscriptionData = [] } = useQuery({
         queryKey: ["AdminMaleSubscriptionAllOthers-AllSubscriptions"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/AllSubscriptions");
+            const res = await fetch("https://test.e-cash-id.com/AdminMaleSubscriptionAllOthers/AllSubscriptions");
             return res.json();
         },
     });
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
 
                     // save user Database 
                     // ==========================
-                    fetch("https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/SubscriptionsPost", {
+                    fetch("https://test.e-cash-id.com/AdminMaleSubscriptionAllOthers/SubscriptionsPost", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"
@@ -188,6 +188,194 @@ const AdminDashboard = () => {
     }
 
 
+    // ===========================================================================================================
+    // Admin BANK Information add Work Here !!
+    // =======================================================
+    // All Bank Info Data!
+    // =======================================
+    const { data: BankInformationAll = [] } = useQuery({
+        queryKey: ["AdminPaymentStatusData"],
+        queryFn: async () => {
+            const res = await fetch("https://test.e-cash-id.com/AdminPaymentStatusData");
+            return res.json();
+        },
+    });
+    // console.log(BankInformationAll)
+
+    // Add Bank Information below!!
+    // =======================================
+    let AdminAddBankInformation = (data) => {
+        setLoadingLogin(true)
+        setError("")
+        setSuccess("")
+        let fromData = new FormData()
+        fromData.append("image", data.BankImage[0])
+        fetch(`https://api.imgbb.com/1/upload?key=187099e910972209cba3b8227d657e56`, {
+            method: "POST",
+            body: fromData
+        })
+            .then(res => res.json())
+            .then(imageResponse => {
+                if (imageResponse.success) {
+
+                    // console.log(imageResponse.secure_url);
+                    let image = imageResponse.data.display_url
+                    let date = moment().format("D/MM/YY , hh:mm A")
+                    let { BankName, BankNumber } = data
+
+                    let allInfo = { image, BankName, BankNumber, date }
+                    console.log(allInfo)
+
+                    // save user Database 
+                    // ==========================
+                    fetch("https://test.e-cash-id.com/AdminAddWebsiteBankDetails", {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(allInfo)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            // console.log(data)
+                            if (data.insertedId) {
+                                reset()
+                                refetch()
+                                setLoadingLogin(false)
+                                setSuccess("Bank Information add Successfully")
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Bank Information Add Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+
+                } else {
+                    setLoadingLogin(false)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your Network Connection Lost, Try agin",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
+
+    // ===========================================================================================================
+    // Admin Update Website POP Up Data
+    // =======================================================
+    // All Bank Info Data!
+    // =======================================
+    const { data: AllPopUpDataOfWebsite = [] } = useQuery({
+        queryKey: ["GetAllPopUpData"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/GetAllPopUpData");
+            return res.json();
+        },
+    });
+    // console.log(AllPopUpDataOfWebsite)
+    let PopUpData = AllPopUpDataOfWebsite[0]
+
+    // Admin Update Pop Up Details Of Website !!
+    // ===============================================
+    let AdminUpdateWebsitePopUp = (data) => {
+        setLoadingLogin(true)
+        setError("")
+        setSuccess("")
+        let fromData = new FormData()
+        fromData.append("image", data.PopUpImage[0])
+        fetch(`https://api.imgbb.com/1/upload?key=187099e910972209cba3b8227d657e56`, {
+            method: "POST",
+            body: fromData
+        })
+            .then(res => res.json())
+            .then(imageResponse => {
+                if (imageResponse.success) {
+
+                    // console.log(imageResponse.secure_url);
+                    let image = imageResponse.data.display_url
+                    let { PopUpTitle, PopUpDetails } = data
+
+                    let allInfo = { image, PopUpTitle, PopUpDetails }
+                    // console.log(allInfo)
+
+                    // save user Database 
+                    // ==========================
+                    fetch(`http://localhost:5000/AdminUpdateWebsitePopUpInformation/${PopUpData?._id}`, {
+                        method: "PATCH",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(allInfo)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            // console.log(data)
+                            if (data.modifiedCount > 0) {
+                                reset()
+                                refetch()
+                                setLoadingLogin(false)
+                                setSuccess("Pop Up Information Update Success Successfully")
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Pop Up Information Update Success Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        })
+
+                } else {
+                    setLoadingLogin(false)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your Network Connection Lost, Try agin",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
+
+    // ===========================================================================================================
+    // Admin Update Website REfer Bonus Percentage
+    // =======================================================
+    // All Refer Bonus Percentage
+    // =======================================
+    const { data: AllReferBonusPercent = [] } = useQuery({
+        queryKey: ["GetReferBonusPercent"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/GetReferBonusPercent");
+            return res.json();
+        },
+    });
+    // console.log(AllPopUpDataOfWebsite)
+    let ReferPercentageData = AllReferBonusPercent[0]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className='AdminViewPaymentRequestAll bg-[#F6F6F6]'>
             <div className='md:px-4 my-4'>
@@ -201,34 +389,52 @@ const AdminDashboard = () => {
 
                     {/* Tabs with Different type of category parcel*/}
                     {/* =============================================== */}
-                    <div className="flex justify-between items-center mb-6 flex-wrap gap-3">
+                    <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
                         {/* Tabs */}
-                        <div className="md:flex gap-4 border-b border-gray-200 space-x-4 mb-4">
+                        <div className="md:flex gap-2 border-b border-gray-200 space-x-4 mb-4">
 
                             <button onClick={() => setTabState(1)}
-                                className={`px-4 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 1 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 1 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
                                     }`}
                             >
                                 Banner Image All
                             </button>
 
                             <button onClick={() => setTabState(2)}
-                                className={`px-4 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 2 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 2 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
                                     }`}
                             >
                                 Create Coupon Bonus
                             </button>
                             <button onClick={() => setTabState(3)}
-                                className={`px-4 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 3 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 3 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
                                     }`}
                             >
                                 Add Subscriptions
                             </button>
                             <button onClick={() => setTabState(4)}
-                                className={`px-4 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 4 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 4 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
                                     }`}
                             >
                                 Admin Give bonus Percent
+                            </button>
+                            <button onClick={() => setTabState(5)}
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 5 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                    }`}
+                            >
+                                Add Bank
+                            </button>
+                            <button onClick={() => setTabState(6)}
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 6 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                    }`}
+                            >
+                                Pop-Up
+                            </button>
+                            <button onClick={() => setTabState(7)}
+                                className={`px-2 py-2 font-medium text-sm rounded-t-md transition-all duration-200 ${tabState === 7 ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-indigo-100"
+                                    }`}
+                            >
+                                Refer Bonus
                             </button>
                         </div>
                     </div>
@@ -303,7 +509,7 @@ const AdminDashboard = () => {
                                                                         }).then((result) => {
                                                                             if (result.isConfirmed) {
 
-                                                                                fetch(`https://server.e-cash-id.com/AdminDashboardAllWorkHere/BannerDelete/${Banner?._id}`, {
+                                                                                fetch(`https://test.e-cash-id.com/AdminDashboardAllWorkHere/BannerDelete/${Banner?._id}`, {
                                                                                     method: "DELETE",
                                                                                 })
                                                                                     .then(res => res.json())
@@ -356,7 +562,7 @@ const AdminDashboard = () => {
 
                                             // save user Database 
                                             // ==========================
-                                            fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/CouponCodeCreate", {
+                                            fetch("https://test.e-cash-id.com/AdminDashboardAllWorkHere/CouponCodeCreate", {
                                                 method: "POST",
                                                 headers: {
                                                     "content-type": "application/json"
@@ -448,7 +654,7 @@ const AdminDashboard = () => {
                                                                         }).then((result) => {
                                                                             if (result.isConfirmed) {
 
-                                                                                fetch(`https://server.e-cash-id.com/AdminDashboardAllWorkHere/DeleteCouponCode/${Coupon?._id}`, {
+                                                                                fetch(`https://test.e-cash-id.com/AdminDashboardAllWorkHere/DeleteCouponCode/${Coupon?._id}`, {
                                                                                     method: "DELETE",
                                                                                 })
                                                                                     .then(res => res.json())
@@ -484,7 +690,7 @@ const AdminDashboard = () => {
                             </div>
                         }
                         {/* ======================================================= */}
-                        {/* Others Work */}
+                        {/* Add Subscriptions*/}
                         {/* ======================================================= */}
                         {tabState === 3 &&
                             <div className="flex justify-center">
@@ -600,7 +806,7 @@ const AdminDashboard = () => {
                                                                         }).then((result) => {
                                                                             if (result.isConfirmed) {
 
-                                                                                fetch(`https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/AdminDeleteSubscription/${Subscription?._id}`, {
+                                                                                fetch(`https://test.e-cash-id.com/AdminMaleSubscriptionAllOthers/AdminDeleteSubscription/${Subscription?._id}`, {
                                                                                     method: "DELETE",
                                                                                 })
                                                                                     .then(res => res.json())
@@ -651,7 +857,7 @@ const AdminDashboard = () => {
 
                                             // save user Database 
                                             // ==========================
-                                            fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/AdminGivePercentageBonusToUser", {
+                                            fetch("https://test.e-cash-id.com/AdminDashboardAllWorkHere/AdminGivePercentageBonusToUser", {
                                                 method: "PATCH",
                                                 headers: {
                                                     "content-type": "application/json"
@@ -698,9 +904,253 @@ const AdminDashboard = () => {
                                 </div>
                             </div>
                         }
+                        {/* ============================================ */}
+                        {/* Add Bank Information of Website */}
+                        {/* ============================================ */}
+                        {tabState === 5 &&
+                            <div className="flex justify-center">
+                                <div className="w-full bg-white shadow-lg border border-gray-200 rounded-xl p-6">
+
+                                    <div className="md:flex justify-between gap-4 items-center pb-4">
+                                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Add Bank Details</h2>
+                                        {/* Search Section (Delivered)*/}
+                                        {/* ==================================== */}
+                                        <form onSubmit={handleSubmit(AdminAddBankInformation)}>
+                                            <div className="md:flex items-center gap-2">
+                                                <div className="">
+                                                    <input
+                                                        {...register("BankName", { required: true })}
+                                                        type="text"
+                                                        placeholder="Bank Name"
+                                                        className="border w-full mb-[4px] border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                    />
+                                                    <br />
+                                                    <input
+                                                        {...register("BankNumber", { required: true })}
+                                                        type="text"
+                                                        placeholder="Bank Number"
+                                                        className="border w-full border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                    />
+                                                </div>
+                                                <div className="">
+                                                    <input
+                                                        {...register("BankImage", { required: true })}
+                                                        type="file"
+                                                        placeholder="Enter Coupon Code"
+                                                        className="border w-full border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                    />
+                                                    <br />
+                                                    <button
+                                                        type="submit"
+                                                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 w-full text-center rounded-md flex items-center gap-1 text-sm"
+                                                    >
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div className="overflow-x-auto">
+                                        <table className="min-w-full divide-y divide-gray-200">
+                                            <thead className="bg-gray-100">
+                                                <tr>
+                                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Image</th>
+                                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Bank Name</th>
+                                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Bank Number</th>
+                                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Date</th>
+                                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="bg-white divide-y divide-gray-200">
+                                                {
+                                                    BankInformationAll.slice().reverse().map((BankInfo) => (
+                                                        <tr key={BankInfo?._id}>
+                                                            <td>
+                                                                <div className="w-24 h-24 rounded-md overflow-hidden border border-gray-300">
+                                                                    <img
+                                                                        src={BankInfo?.image}
+                                                                        alt="Banner"
+                                                                        className="w-full h-full object-cover"
+                                                                    />
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm text-gray-500">{BankInfo?.BankName}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm text-gray-500">{BankInfo?.BankNumber}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm text-gray-500">{BankInfo?.date}</p>
+                                                            </td>
+                                                            <td>
+                                                                <button className="btn btn-sm btn-outline btn-primary"
+                                                                    onClick={() => {
+                                                                        Swal.fire({
+                                                                            title: "Are you sure?",
+                                                                            text: "You won't be able to revert this!",
+                                                                            icon: "warning",
+                                                                            showCancelButton: true,
+                                                                            confirmButtonColor: "#3085d6",
+                                                                            cancelButtonColor: "#d33",
+                                                                            confirmButtonText: "Yes, delete it!"
+                                                                        }).then((result) => {
+                                                                            if (result.isConfirmed) {
+
+                                                                                fetch(`https://test.e-cash-id.com/AdminDeleteBankInfo/${BankInfo?._id}`, {
+                                                                                    method: "DELETE",
+                                                                                })
+                                                                                    .then(res => res.json())
+                                                                                    .then(data => {
+                                                                                        if (data.deletedCount > 0) {
+                                                                                            Swal.fire({
+                                                                                                position: "top-end",
+                                                                                                icon: "success",
+                                                                                                title: "Delete Success",
+                                                                                                showConfirmButton: false,
+                                                                                                timer: 1500
+                                                                                            })
+                                                                                        }
+                                                                                        // console.log(data)
+
+                                                                                        refetch()
+                                                                                    })
+
+                                                                            }
+
+                                                                        });
+                                                                    }}
+                                                                >
+                                                                    Delete
+                                                                </button>
+                                                            </td>
+                                                        </tr>))
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        {/* ============================================ */}
+                        {/* Admin WEbsite Pop Up Update */}
+                        {/* ============================================ */}
+                        {tabState === 6 &&
+                            <div className="flex justify-center">
+                                <div className="w-full bg-white shadow-lg border border-gray-200 rounded-xl p-6">
+
+                                    <div className="md:flex justify-between gap-4 items-center pb-4">
+                                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Website Pop Up Update to Here</h2>
+                                        {/* update Website Pop-Up*/}
+                                        {/* ==================================== */}
+                                        <form onSubmit={handleSubmit(AdminUpdateWebsitePopUp)}>
+                                            <div className="md:flex items-center gap-2">
+                                                <div className="">
+                                                    <input
+                                                        {...register("PopUpTitle", { required: true })}
+                                                        type="text"
+                                                        defaultValue={PopUpData?.Title}
+                                                        className="border w-full mb-[4px] border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
+                                                    />
+                                                    <br />
+                                                    <textarea
+                                                        {...register("PopUpDetails", { required: true })}
+                                                        defaultValue={PopUpData?.Details}
+                                                        className="border w-full border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
+                                                    />
+                                                </div>
+                                                <div className="">
+                                                    <input
+                                                        {...register("PopUpImage", { required: true })}
+                                                        type="file"
+                                                        placeholder="Enter Coupon Code"
+                                                        className="border w-full border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                                                    />
+                                                    <br />
+                                                    <button
+                                                        type="submit"
+                                                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 w-full text-center rounded-md flex items-center gap-1 text-sm"
+                                                    >
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        {/* ============================================ */}
+                        {/* Admin REfer Percentage Bonus Control */}
+                        {/* ============================================ */}
+                        {tabState === 7 &&
+                            <div className="flex justify-center">
+                                <div className="w-full bg-white shadow-lg border border-gray-200 rounded-xl p-6">
+
+                                    <div className="md:flex gap-4 justify-between items-center pb-4">
+                                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Control Refer Bonus Percent</h2>
+                                        {/* Search Section (Delivered)*/}
+                                        {/* ==================================== */}
+                                        <form onSubmit={(e) => {
+                                            e.preventDefault()
+                                            let ReferPercentage = e.target.ReferPercentage.value
+                                            let allInfo = { ReferPercentage }
+
+                                            // save user Database 
+                                            // ==========================
+                                            fetch(`http://localhost:5000/AdminUpdateReferBonusPercent/${ReferPercentageData?._id}`, {
+                                                method: "PATCH",
+                                                headers: {
+                                                    "content-type": "application/json"
+                                                },
+                                                body: JSON.stringify(allInfo)
+                                            })
+                                                .then(res => res.json())
+                                                .then(data => {
+                                                    // console.log(data)
+                                                    e.target.reset()
+                                                    refetch()
+                                                    setLoadingLogin(false)
+                                                    setSuccess("Refer Percent Update Successfully")
+                                                    Swal.fire({
+                                                        position: "top-end",
+                                                        icon: "success",
+                                                        title: "Refer Percent Update Successfully",
+                                                        showConfirmButton: false,
+                                                        timer: 1500
+                                                    })
+
+                                                })
+                                        }}>
+                                            <div className="md:flex items-center gap-2">
+                                                <div className="">
+                                                    <input
+                                                        type="number"
+                                                        defaultValue={ReferPercentageData?.ReferBonusPercent}
+                                                        name="ReferPercentage"
+                                                        placeholder="Enter Amount"
+                                                        className="border w-full mb-[4px] border-gray-300 rounded-md px-6 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-green-500 text-black"
+                                                    />
+                                                </div>
+                                                <button
+                                                    type="submit"
+                                                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md flex items-center gap-1 text-sm"
+                                                >
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
 
                     </div>
                 </div>
+
             </div>
         </div>
     );

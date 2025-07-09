@@ -16,7 +16,7 @@ const AllBankCard = () => {
         const accountHolder = e.target.accountHolder.value;
         let allInfo = { bankName, accountNumber, accountHolder };
 
-        fetch(`https://server.e-cash-id.com/UserUpdateHisBankInformation/${roles?._id}`, {
+        fetch(`https://test.e-cash-id.com/UserUpdateHisBankInformation/${roles?._id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

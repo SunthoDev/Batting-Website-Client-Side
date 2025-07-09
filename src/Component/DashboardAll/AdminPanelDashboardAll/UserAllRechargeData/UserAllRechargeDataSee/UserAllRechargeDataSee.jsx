@@ -1,17 +1,23 @@
 import React from 'react';
 import "./UserAllRechargeDataSee.css"
 
-const UserAllRechargeDataSee = ({allUserRecharge,HandleApprovedRechargeStatus,HandleDelete,index}) => {
+const UserAllRechargeDataSee = ({ allUserRecharge, HandleApprovedRechargeStatus, HandleDelete, index }) => {
 
     // console.log(allUserRecharge)
 
-    let {AccountNumber,PayTrxId,PaymentIdUser,TotalAmount,UserEmail,UserName,payType,status,_id} = allUserRecharge
+    let { AccountNumber, image, PayTrxId, PaymentIdUser, TotalAmount, UserEmail, UserName, payType, status, _id } = allUserRecharge
 
 
     return (
         <tr className='UserAllData'>
             <td>
-                <h3>{index + 1}</h3>
+                <div className="w-24 h-24 rounded-md overflow-hidden border border-gray-300">
+                    <img
+                        src={allUserRecharge?.image}
+                        alt="Banner"
+                        className="w-full h-full object-cover"
+                    />
+                </div>
             </td>
             <td>
                 <h3>{UserName}</h3>
@@ -32,7 +38,7 @@ const UserAllRechargeDataSee = ({allUserRecharge,HandleApprovedRechargeStatus,Ha
                 <h4>{status}</h4>
             </td>
             <td>
-                <button onClick={() => HandleApprovedRechargeStatus(_id,UserEmail,TotalAmount)}>Approved</button>
+                <button onClick={() => HandleApprovedRechargeStatus(_id, UserEmail, TotalAmount)}>Approved</button>
             </td>
             <td>
                 <button onClick={() => HandleDelete(_id)}>Delete</button>

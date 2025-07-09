@@ -16,7 +16,6 @@ import Climed from '../../Climed/Climed';
 import CustomerServices from '../../CustomerServices/CustomerServices';
 import AboutUs from '../../AboutUs/AboutUs';
 import Vip from '../../Vip/Vip';
-import UpdatePaymentInfoAdmin from '../../DashboardAll/AdminPanelDashboardAll/UpdatePaymentInfoAdmin/UpdatePaymentInfoAdmin';
 import Spinner from '../../OthersRouteWebsiteHome/Spinner/Spinner';
 import BuySubscriptionPlan from '../../HomeAllSection/AllSubscription/BuySubscriptionPlan/BuySubscriptionPlan';
 import Recharge from '../../OthersRouteWebsiteHome/PaymentAllSystem/Recharge/Recharge';
@@ -28,6 +27,7 @@ import RechargeHistory from '../../OthersRouteWebsiteHome/PaymentAllSystem/Recha
 import AdminDashboard from '../../DashboardAll/AdminPanelDashboardAll/AdminDashboard/AdminDashboard';
 import MyGift from '../../OthersRouteWebsiteHome/MyGift/MyGift';
 import AllBankCard from '../../OthersRouteWebsiteHome/AllBankCard/AllBankCard';
+import SingUpBonus from '../../DashboardAll/AdminPanelDashboardAll/SingUpBonus/SingUpBonus';
 
 
 let route = createBrowserRouter([
@@ -62,7 +62,7 @@ let route = createBrowserRouter([
             {
                 path: "BuySubscriptionPlan/:id",
                 element: <PrivateRoute> <BuySubscriptionPlan></BuySubscriptionPlan> </PrivateRoute>,
-                loader:({params}) => fetch(`https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/SubscriptionsInformation/${params.id}`)
+                loader:({params}) => fetch(`https://test.e-cash-id.com/AdminMaleSubscriptionAllOthers/SubscriptionsInformation/${params.id}`)
             },
             {
                 path: "Withdraw",
@@ -137,8 +137,8 @@ let route = createBrowserRouter([
                 element: <PrivateRoute> <UserAllRechargeData></UserAllRechargeData> </PrivateRoute>
             },
             {
-                path: "UpdatePaymentInfoAdmin",
-                element: <PrivateRoute> <UpdatePaymentInfoAdmin></UpdatePaymentInfoAdmin> </PrivateRoute>
+                path: "SingUpBonus",
+                element: <PrivateRoute> <SingUpBonus></SingUpBonus> </PrivateRoute>
             },
            
 

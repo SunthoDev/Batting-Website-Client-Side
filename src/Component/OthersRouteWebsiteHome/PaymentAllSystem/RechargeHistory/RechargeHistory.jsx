@@ -14,7 +14,7 @@ const RechargeHistory = () => {
     const { data: userAllRechargeData = [], refetch } = useQuery({
         queryKey: ["AllRechargeData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AllRechargeData");
+            const res = await fetch("https://test.e-cash-id.com/AllRechargeData");
             return res.json();
         },
     });

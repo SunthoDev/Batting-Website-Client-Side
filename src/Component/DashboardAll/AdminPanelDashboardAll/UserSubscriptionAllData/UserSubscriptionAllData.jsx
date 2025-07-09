@@ -13,7 +13,7 @@ const UserSubscriptionAllData = () => {
     const { data: UserSubscriptionDataAll = [], refetch } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserSubscriptionDataAll");
+            const res = await fetch("https://test.e-cash-id.com/UserSubscriptionDataAll");
             return res.json();
         },
     });
@@ -42,7 +42,7 @@ const UserSubscriptionAllData = () => {
         let SubTotalPrice = { SubscriptionPriceTotall: SubPrice }
         // Subscription Approved Here
         // ==================================
-        fetch(`https://server.e-cash-id.com/AdminUpdateUserVerifiedStatus/${SubscriptionId}`, {
+        fetch(`https://test.e-cash-id.com/AdminUpdateUserVerifiedStatus/${SubscriptionId}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -56,14 +56,14 @@ const UserSubscriptionAllData = () => {
                     if (ReferId !== "0000") {
                         // User ref status approved ref
                         // ==============================
-                        fetch(`https://server.e-cash-id.com/AdminApprovedUserRefStatus/${SubscriptionId}`, {
+                        fetch(`https://test.e-cash-id.com/AdminApprovedUserRefStatus/${SubscriptionId}`, {
                             method: "PATCH",
                         })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.modifiedCount > 0) {
                                     // User balance add use ref
-                                    fetch(`https://server.e-cash-id.com/AdminUserBalancePluseForUserRef/${ReferId}`, {
+                                    fetch(`https://test.e-cash-id.com/AdminUserBalancePluseForUserRef/${ReferId}`, {
                                         method: "PATCH",
                                         headers: {
                                             "content-type": "application/json"
@@ -75,7 +75,7 @@ const UserSubscriptionAllData = () => {
                                             // console.log(data)
                                             if (data.modifiedCount > 0) {
                                                 // User balance Decrase For Subscription Price 
-                                                fetch(`https://server.e-cash-id.com/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
+                                                fetch(`https://test.e-cash-id.com/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
                                                     method: "PATCH",
                                                     headers: {
                                                         "content-type": "application/json"
@@ -107,7 +107,7 @@ const UserSubscriptionAllData = () => {
                         // =======================================================
                         // without Refer buy subscription
                         // =======================================================
-                        fetch(`https://server.e-cash-id.com/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
+                        fetch(`https://test.e-cash-id.com/AdminUserBalanceDecraseSubscriptionCost/${id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"
@@ -144,7 +144,7 @@ const UserSubscriptionAllData = () => {
 
         // Subscription Approved Here
         // ==================================
-        fetch(`https://server.e-cash-id.com/AdminUpdateUserPendingStatus/${SubscriptionId}`, {
+        fetch(`https://test.e-cash-id.com/AdminUpdateUserPendingStatus/${SubscriptionId}`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -157,14 +157,14 @@ const UserSubscriptionAllData = () => {
 
                     if (ReferId !== "0000") {
                         // User ref status Pending ref
-                        fetch(`https://server.e-cash-id.com/AdminPendingUserRefStatus/${SubscriptionId}`, {
+                        fetch(`https://test.e-cash-id.com/AdminPendingUserRefStatus/${SubscriptionId}`, {
                             method: "PATCH",
                         })
                             .then(res => res.json())
                             .then(data => {
                                 if (data.modifiedCount > 0) {
                                     // User balance decrase use ref
-                                    fetch(`https://server.e-cash-id.com/AdminUserBalanceDecraseForUserRef/${ReferId}`, {
+                                    fetch(`https://test.e-cash-id.com/AdminUserBalanceDecraseForUserRef/${ReferId}`, {
                                         method: "PATCH",
                                         headers: {
                                             "content-type": "application/json"
@@ -175,7 +175,7 @@ const UserSubscriptionAllData = () => {
                                         .then(data => {
                                             if (data.modifiedCount > 0) {
                                                 // User balance Add For Subscription Price 
-                                                fetch(`https://server.e-cash-id.com/AdminUserBalanceBackSubscriptionCost/${id}`, {
+                                                fetch(`https://test.e-cash-id.com/AdminUserBalanceBackSubscriptionCost/${id}`, {
                                                     method: "PATCH",
                                                     headers: {
                                                         "content-type": "application/json"
@@ -206,7 +206,7 @@ const UserSubscriptionAllData = () => {
                         // =======================================================
                         // without buy subscription buy
                         // =======================================================
-                        fetch(`https://server.e-cash-id.com/AdminUserBalanceBackSubscriptionCost/${id}`, {
+                        fetch(`https://test.e-cash-id.com/AdminUserBalanceBackSubscriptionCost/${id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"
@@ -248,7 +248,7 @@ const UserSubscriptionAllData = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`https://server.e-cash-id.com/AdminDeleteUsersVerified/${id}`, {
+                fetch(`https://test.e-cash-id.com/AdminDeleteUsersVerified/${id}`, {
                     method: "DELETE",
                 })
                     .then(res => res.json())
@@ -256,7 +256,7 @@ const UserSubscriptionAllData = () => {
                         if (data.deletedCount > 0) {
 
                             if (ReferId !== "") {
-                                fetch(`https://server.e-cash-id.com/AdminDeleteUsersRef/${SubscriptionId}`, {
+                                fetch(`https://test.e-cash-id.com/AdminDeleteUsersRef/${SubscriptionId}`, {
                                     method: "DELETE",
                                 })
                                     .then(res => res.json())
@@ -298,7 +298,7 @@ const UserSubscriptionAllData = () => {
     // ======================================
     let HandleSendSubscriptionClimeAccess = () => {
 
-        fetch(`https://server.e-cash-id.com/AdminSendClimeAccessUser`, {
+        fetch(`https://test.e-cash-id.com/AdminSendClimeAccessUser`, {
             method: "PATCH",
         })
             .then(res => res.json())
@@ -321,7 +321,7 @@ const UserSubscriptionAllData = () => {
     // Admin Subscription Access not Send Start
     // ========================================
     let HandleNotSendSubscriptionClimeAccess = () => {
-        fetch(`https://server.e-cash-id.com/AdminNotSendClimeAccessUser`, {
+        fetch(`https://test.e-cash-id.com/AdminNotSendClimeAccessUser`, {
             method: "PATCH",
         })
             .then(res => res.json())

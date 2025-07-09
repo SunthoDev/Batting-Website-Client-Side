@@ -19,7 +19,7 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
         let allInfo = { ClimeVIPNum: VIPNum, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email }
         let VIPTotalBalance = { UserVIPBunas: VIPBunas }
 
-        fetch("https://server.e-cash-id.com/ClimeVipDataAllAdd", {
+        fetch("https://test.e-cash-id.com/ClimeVipDataAllAdd", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -30,7 +30,7 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
             .then(data => {
                 if (data.insertedId) {
                     // User balance add VIP Bonus
-                    fetch(`https://server.e-cash-id.com/VIPBonusUserBalanceAdd/${Email}`, {
+                    fetch(`https://test.e-cash-id.com/VIPBonusUserBalanceAdd/${Email}`, {
                         method: "PATCH",
                         headers: {
                             "content-type": "application/json"
@@ -69,7 +69,7 @@ const VIPDetails = ({ UserVIP, useUserReferVIPAll, refetch }) => {
     const { data: userAllClimeVIPData = [] } = useQuery({
         queryKey: ["ClimeVipDataAll"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/ClimeVipDataAll");
+            const res = await fetch("https://test.e-cash-id.com/ClimeVipDataAll");
             return res.json();
         },
     });

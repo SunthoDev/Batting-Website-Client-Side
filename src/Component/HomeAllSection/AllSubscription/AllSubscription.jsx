@@ -32,7 +32,7 @@ const AllSubscription = () => {
     const { data: SubscriptionData = [], refetch } = useQuery({
         queryKey: ["AdminMaleSubscriptionAllOthers-AllSubscriptions"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AdminMaleSubscriptionAllOthers/AllSubscriptions");
+            const res = await fetch("https://test.e-cash-id.com/AdminMaleSubscriptionAllOthers/AllSubscriptions");
             return res.json();
         },
     });

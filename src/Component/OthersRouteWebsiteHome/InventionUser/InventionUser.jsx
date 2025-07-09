@@ -4,6 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import useRole from '../../../Hook/useRole';
 import { AuthContext } from '../../AuthoncationAll/AuthProvider/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 
 
 const InventionUser = () => {
@@ -11,8 +12,23 @@ const InventionUser = () => {
     const { user } = useContext(AuthContext)
     const [roles] = useRole()
     let { LastName, Password, UseRefCode, date, email, name, photo, referId, role, status, userBalance, userId, _id } = roles
-
     const notify = () => toast.success("Referral link copied!");
+
+
+    // All Refer Bonus Percentage
+    // =======================================
+    const { data: AllReferBonusPercent = [] } = useQuery({
+        queryKey: ["GetReferBonusPercent"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/GetReferBonusPercent");
+            return res.json();
+        },
+    });
+    // console.log(AllPopUpDataOfWebsite)
+    let ReferPercentageData = AllReferBonusPercent[0]
+
+
+
 
 
     return (
@@ -27,7 +43,7 @@ const InventionUser = () => {
                         👋 Hello {name}, exciting news for you!
                     </h4>
                     <p className="text-sm text-gray-300 leading-relaxed">
-                        If someone subscribes using your referral code, you'll earn a bonus of <span className="text-green-400 font-semibold">18%</span> of their subscription amount.
+                        If someone subscribes using your referral code, you'll earn a bonus of <span className="text-green-400 font-semibold">{ReferPercentageData?.ReferBonusPercent}%</span> of their subscription amount.
                         <br />So, share your referral link now and start earning!
                     </p>
                 </div>

@@ -41,7 +41,7 @@ const Banner = () => {
     const { data: AllBannerOfWebsite = [], refetch } = useQuery({
         queryKey: ["AdminDashboardAllWorkHere-AllBanner"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AdminDashboardAllWorkHere/AllBanner");
+            const res = await fetch("https://test.e-cash-id.com/AdminDashboardAllWorkHere/AllBanner");
             return res.json();
         },
     });

@@ -59,7 +59,7 @@ const Profile = () => {
     const { data: userUserAllRef = [] } = useQuery({
         queryKey: ["UserAllRef"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserAllRef");
+            const res = await fetch("https://test.e-cash-id.com/UserAllRef");
             return res.json();
         },
     });
@@ -85,7 +85,7 @@ const Profile = () => {
     const { data: userAllRechargeData = [], refetch } = useQuery({
         queryKey: ["AllRechargeData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/AllRechargeData");
+            const res = await fetch("https://test.e-cash-id.com/AllRechargeData");
             return res.json();
         },
     });
@@ -103,7 +103,7 @@ const Profile = () => {
     const { data: userAllWithdrawData = [] } = useQuery({
         queryKey: ["UserAllWithdrawData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserAllWithdrawData");
+            const res = await fetch("https://test.e-cash-id.com/UserAllWithdrawData");
             return res.json();
         },
     });
@@ -124,7 +124,7 @@ const Profile = () => {
     const { data: UserSubscriptionDataAll = [], } = useQuery({
         queryKey: ["UserSubscriptionDataAll"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserSubscriptionDataAll");
+            const res = await fetch("https://test.e-cash-id.com/UserSubscriptionDataAll");
             return res.json();
         },
     });
@@ -279,7 +279,18 @@ const Profile = () => {
                         </button>
                         <button onClick={() => {
                             if (user && roles?.email && user?.email) {
-                                navigate("/Withdraw")
+
+                                roles?.bankName && roles?.accountNumber && roles?.accountHolder ?
+                                 navigate("/Withdraw")
+                                 :
+                                    Swal.fire({
+                                        title: 'Please Add a Bank Details',
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Login Now'
+                                    })
                             } else {
 
                                 Swal.fire({
@@ -498,7 +509,7 @@ const Profile = () => {
                         let allInfo = { firstName, lastName };
                         // console.log(allInfo)
 
-                        fetch(`https://server.e-cash-id.com/UserUpdateHisInformation/${roles?._id}`, {
+                        fetch(`https://test.e-cash-id.com/UserUpdateHisInformation/${roles?._id}`, {
                             method: "PATCH",
                             headers: {
                                 "content-type": "application/json"

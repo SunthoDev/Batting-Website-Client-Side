@@ -14,7 +14,7 @@ let useRole = () => {
         enabled: !loading && !!user?.email,
 
         queryFn: async () => {
-            const response = await fetch(`https://server.e-cash-id.com/userRoleCheck/${user?.email}`);
+            const response = await fetch(`https://test.e-cash-id.com/userRoleCheck/${user?.email}`);
             // console.log(response)
             let data = await response.json();
             return data

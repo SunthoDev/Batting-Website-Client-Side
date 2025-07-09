@@ -14,25 +14,27 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const SingUp = () => {
 
-    // ===================================================================
-    //  // VIP all Data Start
-    // ===================================================================
-    const { data: UserVIPAllData = [], refetch } = useQuery({
-        queryKey: ["VIPAllData"],
+    // ======================================================
+    // SingUp Bonus Data Find Here
+    // ======================================================
+    const { data: SingUpBonusData = [], refetch } = useQuery({
+        queryKey: ["AdminGetSingUpBonusData"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/VIPAllData");
+            const res = await fetch("http://localhost:5000/AdminGetSingUpBonusData");
             return res.json();
         },
     });
-    // console.log(UserVIPAllData)
+    let SingUpBonus = SingUpBonusData[0]
+    // console.log(SingUpBonusData)
+
+
+
 
 
 
     // ===================================================================
-
     let [xx, setXx] = useState(true)
     let [btnDisable, setBtnDisable] = useState(false)
-
     // ================================================
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -75,11 +77,11 @@ const SingUp = () => {
                 // user Update 
                 updateProfile(createUser, { displayName: FirstName })
                     .then(() => {
-                        let saveUser = { name: createUser.displayName, UseRefCode, LastName: LastName, Password, email: createUser.email, photo: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1480&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", userId: Math.round(Math.random() * 99999999).toString(), role: "user", status: "pending", date, referId: Math.round(Math.random() * 99999999).toString(), userBalance: 0 }
+                        let saveUser = { name: createUser.displayName, UseRefCode, LastName: LastName, Password, email: createUser.email, photo: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1480&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", userId: Math.round(Math.random() * 99999999).toString(), role: "user", status: "pending", date, referId: Math.round(Math.random() * 99999999).toString(), userBalance: SingUpBonus?.BonusSingUp ? SingUpBonus?.BonusSingUp : 0 }
 
                         console.log(saveUser) 
                         // save user DB 
-                        fetch("https://server.e-cash-id.com/users", {
+                        fetch("https://test.e-cash-id.com/users", {
                             method: "POST",
                             headers: {
                                 "content-type": "application/json"

@@ -62,7 +62,7 @@ const Dashboard = () => {
                         <li> <NavLink to="/dashboardPlant/UserAllRechargeData"><span><FaWallet></FaWallet></span>User All Recharge </NavLink></li>
                         <li> <NavLink to="/dashboardPlant/userSubscription"><span><FaWallet></FaWallet></span>User Subscription All</NavLink></li>
                         <li> <NavLink to="/dashboardPlant/UserAllWithdrawData"><span><FaWallet></FaWallet></span>User All Withdraw Data</NavLink></li>
-                        <li> <NavLink to="/dashboardPlant/UpdatePaymentInfoAdmin"><span><FaWallet></FaWallet></span>Update Payment Info</NavLink></li>
+                        <li> <NavLink to="/dashboardPlant/SingUpBonus"><span><FaWallet></FaWallet></span>SingUp Bonus</NavLink></li>
                     </>
 
                     {/* others panel */}

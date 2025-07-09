@@ -40,7 +40,7 @@ const EveryTopDetails = () => {
     const { data: userUserAllRef = [] } = useQuery({
         queryKey: ["UserAllRef"],
         queryFn: async () => {
-            const res = await fetch("https://server.e-cash-id.com/UserAllRef");
+            const res = await fetch("https://test.e-cash-id.com/UserAllRef");
             return res.json();
         },
     });
@@ -150,7 +150,17 @@ const EveryTopDetails = () => {
                 <div className="flex flex-col justify-between w-full md:w-1/2 h-[110px] bg-[#92f093a9] rounded-lg px-4 py-3"
                     onClick={() => {
                         if (user && roles?.email && user?.email) {
-                            navigate("/Withdraw");
+                            roles?.bankName && roles?.accountNumber && roles?.accountHolder ?
+                                navigate("/Withdraw")
+                                :
+                                Swal.fire({
+                                    title: 'Please Add a Bank Details',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Login Now'
+                                })
                         } else {
                             Swal.fire({
                                 title: 'Please Login Your Account',
@@ -299,10 +309,10 @@ const EveryTopDetails = () => {
             {/* <div className="flex flex-col md:flex-row gap-4 px-4 mt-6"> */}
             <div className="flex items-center gap-4 px-4 mt-6">
 
-              {/* MYGIFT */}
+                {/* MYGIFT */}
                 {/* ========================= */}
                 <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition"
-                   onClick={() => {
+                    onClick={() => {
                         if (user && roles?.email && user?.email) {
                             navigate("/MyGift");
                         } else {
@@ -331,12 +341,20 @@ const EveryTopDetails = () => {
                     <span className="text-lg font-semibold text-black">My Gift</span>
                 </div>
 
-              {/* JOIN Spin */}
+                {/* JOIN Spin */}
                 {/* ========================= */}
                 <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition"
                     onClick={() => {
                         if (user && roles?.email && user?.email) {
-                            navigate("/Spinner");
+                            // navigate("/Spinner");
+                            Swal.fire({
+                                title: 'Coming Soon',
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                // confirmButtonText: 'Login Now'
+                            })
                         } else {
                             Swal.fire({
                                 title: 'Please Login Your Account',
@@ -365,7 +383,35 @@ const EveryTopDetails = () => {
 
                 {/* CASHBACK */}
                 {/* ========================= */}
-                <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition">
+                <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition"
+                    onClick={() => {
+                        if (user && roles?.email && user?.email) {
+                            // navigate("/CashBack");
+                            Swal.fire({
+                                title: 'Coming Soon',
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                // confirmButtonText: 'Login Now'
+                            })
+                        } else {
+                            Swal.fire({
+                                title: 'Please Login Your Account',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Login Now'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    navigate("/login", { state: { from: location } });
+                                    toast("Login Page Success");
+                                }
+                            });
+                        }
+                    }}
+                >
                     <img
                         src="https://i.ibb.co/Gf7FwQfN/CashBack.jpg"
                         alt="ABOUT"

@@ -6,11 +6,7 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import useRole from '../../../../Hook/useRole';
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
-// import one from "../../../../assets/SbImage/one.jpeg"
-// import two from "../../../../assets/SbImage/two.jpeg"
-// import three from "../../../../assets/SbImage/three.jpeg"
-// import four from "../../../../assets/SbImage/four.jpeg"
-// import five from "../../../../assets/SbImage/five.jpeg"
+import { useQuery } from '@tanstack/react-query';
 
 const BuySubscriptionPlan = () => {
 
@@ -21,6 +17,25 @@ const BuySubscriptionPlan = () => {
     // console.log(SubscriptionData)
 
 
+    // All Refer Bonus Percentage
+    // =======================================
+    const { data: AllReferBonusPercent = [] } = useQuery({
+        queryKey: ["GetReferBonusPercent"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/GetReferBonusPercent");
+            return res.json();
+        },
+    });
+    // console.log(AllPopUpDataOfWebsite)
+    let ReferPercentageData = AllReferBonusPercent[0]
+    let AdminGaveRefBonus = parseInt(ReferPercentageData?.ReferBonusPercent)
+
+
+
+
+
+    // Buy A Subscription Plan
+    // ============================================
     let HandleBuySubscription = () => {
         // =============================================
         // Before Check User Money
@@ -57,7 +72,22 @@ const BuySubscriptionPlan = () => {
             .then((result) => {
                 if (result.isConfirmed) {
 
-                     let SubscriptionId = Math.round(Math.random() * 99999999).toString()
+                    // Clime Access Here !!
+                    // ===================================
+                    let ClimeHours = (() => {
+                        const now = new Date();
+                        const hours = now.getHours();
+
+                        if (hours >= 0 && hours < 10) {
+                            // রাত ১২ টা থেকে সকাল ১০টার আগে
+                            return 24;
+                        } else {
+                            // সকাল ১০টা থেকে রাত ১২টা পর্যন্ত
+                            return 0;
+                        }
+                    })();
+
+                    let SubscriptionId = Math.round(Math.random() * 99999999).toString()
                     // ================================================
                     // Database Data Sent Work Start
                     // ================================================
@@ -70,13 +100,13 @@ const BuySubscriptionPlan = () => {
                         TotalProfite: SubscriptionData?.TotalProfit,
                         UseRefBonusUser: SubscriptionData?.SubscriptionPrice * 18 / 100,
 
-                        useRefCode: roles?.UseRefCode, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", SubscriptionId, hours: 24
+                        useRefCode: roles?.UseRefCode, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", SubscriptionId, hours: ClimeHours
                     }
-                    console.log(allInfo)
+                    // console.log(allInfo)
 
 
                     // Send User Subscription Request Here
-                    fetch("https://server.e-cash-id.com/UserSubscriptionRequest", {
+                    fetch("https://test.e-cash-id.com/UserSubscriptionRequest", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"
@@ -92,7 +122,7 @@ const BuySubscriptionPlan = () => {
                                         UseRefBonusUser: SubscriptionData?.SubscriptionPrice * 18 / 100,
                                         userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", ThatBuySubscriptionSameRefId: SubscriptionId, useRefCode: roles?.UseRefCode
                                     }
-                                    fetch("https://server.e-cash-id.com/UserRefRequest", {
+                                    fetch("https://test.e-cash-id.com/UserRefRequest", {
                                         method: "POST",
                                         headers: {
                                             "content-type": "application/json"

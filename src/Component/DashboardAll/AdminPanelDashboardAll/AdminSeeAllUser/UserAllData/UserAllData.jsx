@@ -15,7 +15,7 @@ const UserAllData = ({ allUser, HandleAdmin, handleUser, HandleDelete, refetch }
         let allInfo = {amounts: amount}
         // console.log(allInfo)
 
-        fetch(`https://server.e-cash-id.com/AdminUpdateUserBalance/${_id}`, {
+        fetch(`https://test.e-cash-id.com/AdminUpdateUserBalance/${_id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
