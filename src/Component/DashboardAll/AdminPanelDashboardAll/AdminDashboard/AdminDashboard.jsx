@@ -275,7 +275,7 @@ const AdminDashboard = () => {
     const { data: AllPopUpDataOfWebsite = [] } = useQuery({
         queryKey: ["GetAllPopUpData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/GetAllPopUpData");
+            const res = await fetch("https://test.e-cash-id.com/GetAllPopUpData");
             return res.json();
         },
     });
@@ -307,7 +307,7 @@ const AdminDashboard = () => {
 
                     // save user Database 
                     // ==========================
-                    fetch(`http://localhost:5000/AdminUpdateWebsitePopUpInformation/${PopUpData?._id}`, {
+                    fetch(`https://test.e-cash-id.com/AdminUpdateWebsitePopUpInformation/${PopUpData?._id}`, {
                         method: "PATCH",
                         headers: {
                             "content-type": "application/json"
@@ -354,24 +354,12 @@ const AdminDashboard = () => {
     const { data: AllReferBonusPercent = [] } = useQuery({
         queryKey: ["GetReferBonusPercent"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/GetReferBonusPercent");
+            const res = await fetch("https://test.e-cash-id.com/GetReferBonusPercent");
             return res.json();
         },
     });
     // console.log(AllPopUpDataOfWebsite)
     let ReferPercentageData = AllReferBonusPercent[0]
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -557,8 +545,9 @@ const AdminDashboard = () => {
                                             e.preventDefault()
                                             let AmountBunas = e.target.Amount.value
                                             let CouponCode = e.target.CouponCode.value
-                                            let date = moment().format("D/MM/YY , hh:mm A")
-                                            let allInfo = { AmountBunas, CouponCode, date, status: "unUsed" }
+                                            let date = moment().format("DD/MM/YYYY")
+                                            let time = moment().format("hh:mm A")
+                                            let allInfo = { AmountBunas, CouponCode, date,time, status: "unUsed" }
 
                                             // save user Database 
                                             // ==========================
@@ -1100,7 +1089,7 @@ const AdminDashboard = () => {
 
                                             // save user Database 
                                             // ==========================
-                                            fetch(`http://localhost:5000/AdminUpdateReferBonusPercent/${ReferPercentageData?._id}`, {
+                                            fetch(`https://test.e-cash-id.com/AdminUpdateReferBonusPercent/${ReferPercentageData?._id}`, {
                                                 method: "PATCH",
                                                 headers: {
                                                     "content-type": "application/json"

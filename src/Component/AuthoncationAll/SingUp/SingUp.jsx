@@ -20,7 +20,7 @@ const SingUp = () => {
     const { data: SingUpBonusData = [], refetch } = useQuery({
         queryKey: ["AdminGetSingUpBonusData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AdminGetSingUpBonusData");
+            const res = await fetch("https://test.e-cash-id.com/AdminGetSingUpBonusData");
             return res.json();
         },
     });
@@ -60,7 +60,9 @@ const SingUp = () => {
         let Password = data.password
         let confirmPassword = data.confirmPassword
         let UseRefCode = data.ReferCode
-        let date = moment().format("MM/D/YY , hh:mm A")
+        let date = moment().format("DD/MM/YYYY")
+        let time = moment().format("hh:mm A")
+
         // console.log(UserReferUseAccount)
 
         if (Password !== confirmPassword) {
@@ -77,7 +79,7 @@ const SingUp = () => {
                 // user Update 
                 updateProfile(createUser, { displayName: FirstName })
                     .then(() => {
-                        let saveUser = { name: createUser.displayName, UseRefCode, LastName: LastName, Password, email: createUser.email, photo: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1480&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", userId: Math.round(Math.random() * 99999999).toString(), role: "user", status: "pending", date, referId: Math.round(Math.random() * 99999999).toString(), userBalance: SingUpBonus?.BonusSingUp ? SingUpBonus?.BonusSingUp : 0 }
+                        let saveUser = { name: createUser.displayName, UseRefCode, LastName: LastName, Password, email: createUser.email, photo: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1480&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", userId: Math.round(Math.random() * 99999999).toString(), role: "user", status: "pending", date,time, referId: Math.round(Math.random() * 99999999).toString(), userBalance: SingUpBonus?.BonusSingUp ? SingUpBonus?.BonusSingUp : 0 }
 
                         console.log(saveUser) 
                         // save user DB 

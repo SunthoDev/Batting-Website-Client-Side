@@ -3,7 +3,7 @@ import "./UserSubscriptionSeeAllData.css"
 
 const UserSubscriptionSeeAllData = ({ allOrder,HandleApproved,HandlePending,HandleDelete }) => {
 
-    console.log(allOrder)
+    // console.log(allOrder)
 
     let {SubDayBonus,SubPrice,SubscriptionDay,SubscriptionId,TotalProfite,UseRefBonusUser,UserEmail,UserName,status,useRefCode,userId,hours, _id} = allOrder
 

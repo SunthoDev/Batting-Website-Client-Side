@@ -47,7 +47,7 @@ const Banner = () => {
     });
 
     return (
-        <div className="pt-[80px] md:pt-[54px] mx-4 ">
+        <div className="pt-[80px] md:pt-[80px] mx-4 ">
             <div className="slider">
                 <Swiper
                     spaceBetween={30}

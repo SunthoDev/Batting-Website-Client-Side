@@ -9,6 +9,8 @@ const AllBankCard = () => {
     const [roles] = useRole()
     let navigate = useNavigate()
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const bankName = e.target.bankName.value;
@@ -42,6 +44,8 @@ const AllBankCard = () => {
 
         e.target.reset();
     };
+
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-10 pt-[68px] pb-[88px]">

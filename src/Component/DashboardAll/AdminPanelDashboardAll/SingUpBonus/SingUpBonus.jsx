@@ -14,7 +14,7 @@ const SingUpBonus = () => {
     const { data: SingUpBonusData = [], refetch } = useQuery({
         queryKey: ["AdminGetSingUpBonusData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/AdminGetSingUpBonusData");
+            const res = await fetch("https://test.e-cash-id.com/AdminGetSingUpBonusData");
             return res.json();
         },
     });
@@ -36,7 +36,7 @@ const SingUpBonus = () => {
 
         // console.log(allInfo)
 
-        fetch(`http://localhost:5000/AdminUpdateSingUpBonusAmount/${SingUpBonus?._id}`, {
+        fetch(`https://test.e-cash-id.com/AdminUpdateSingUpBonusAmount/${SingUpBonus?._id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"

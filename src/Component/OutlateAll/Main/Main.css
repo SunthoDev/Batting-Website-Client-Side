@@ -1,0 +1,5 @@
+.PopUpParent .Details{
+    height: 120px;
+    overflow: overlay;
+    text-align: justify;
+}

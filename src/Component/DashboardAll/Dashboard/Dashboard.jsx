@@ -63,6 +63,8 @@ const Dashboard = () => {
                         <li> <NavLink to="/dashboardPlant/userSubscription"><span><FaWallet></FaWallet></span>User Subscription All</NavLink></li>
                         <li> <NavLink to="/dashboardPlant/UserAllWithdrawData"><span><FaWallet></FaWallet></span>User All Withdraw Data</NavLink></li>
                         <li> <NavLink to="/dashboardPlant/SingUpBonus"><span><FaWallet></FaWallet></span>SingUp Bonus</NavLink></li>
+                        <li> <NavLink to="/dashboardPlant/AllReport"><span><FaWallet></FaWallet></span>All Report</NavLink></li>
+                        <li> <NavLink to="/dashboardPlant/DailyAllReport"><span><FaWallet></FaWallet></span>Daily All Report</NavLink></li>
                     </>
 
                     {/* others panel */}

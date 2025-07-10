@@ -14,7 +14,7 @@ const Main = () => {
     const { data: AllPopUpDataOfWebsite = [] ,isLoading } = useQuery({
         queryKey: ["GetAllPopUpData"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/GetAllPopUpData");
+            const res = await fetch("https://test.e-cash-id.com/GetAllPopUpData");
             return res.json();
         },
     });
@@ -36,10 +36,10 @@ const Main = () => {
             {/* ✅ Refresh Popup */}
             {/* =============================== */}
             { isLoading !== showPopup && (
-                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                <div className="PopUpParent fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
                     <div className="bg-white rounded-xl p-4 w-[90%] max-w-sm relative shadow-2xl border border-gray-200">
                         <button
-                            className="absolute top-2 right-2 text-gray-500 hover:text-black text-xl"
+                            className="absolute top-2 right-2 bg-black w-[40px] h-[40px] rounded-[50%] text-green-600 text-xl"
                             onClick={handleClose}
                         >
                             ×
@@ -52,7 +52,7 @@ const Main = () => {
                         <h2 className="text-lg font-bold text-black">
                            {PopUpData?.Title}
                         </h2>
-                        <p className="text-sm text-gray-700 mt-2">
+                        <p className="Details text-sm text-gray-700 mt-2">
                             {PopUpData?.Details}
                         </p>
                     </div>

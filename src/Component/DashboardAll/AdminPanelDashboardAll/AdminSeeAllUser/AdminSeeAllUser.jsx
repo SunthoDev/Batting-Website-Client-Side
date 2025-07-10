@@ -6,11 +6,11 @@ import { useQuery } from '@tanstack/react-query';
 
 const AdminSeeAllUser = () => {
 
-       // States
-       const [limit, setLimit] = useState(50); // Initial rows to load
-       const [isIntersecting, setIsIntersecting] = useState(false); // Observer trigger
-       const loaderRef = useRef(null); // Ref for Intersection Observer
-   
+    // States
+    const [limit, setLimit] = useState(50); // Initial rows to load
+    const [isIntersecting, setIsIntersecting] = useState(false); // Observer trigger
+    const loaderRef = useRef(null); // Ref for Intersection Observer
+
 
     // user data all find use tenStack query 
     const { data: adminAllUsers = [], refetch } = useQuery({
@@ -165,7 +165,7 @@ const AdminSeeAllUser = () => {
         <div className='UserDataAdmin bg-white '>
 
             <div className='userData bg-[#F6F6F6] rounded-[7px] mx-0 md:mx-6 my-8 px-4 py-8'>
-            <h2>Total User : {adminAllUsers.length}</h2>
+                <h2>Total User : {adminAllUsers.length}</h2>
 
                 {/* ======================================= */}
 
@@ -200,19 +200,19 @@ const AdminSeeAllUser = () => {
                                 adminAllUsers.slice(0,500)?.map(allUser => <UserAllData HandleAdmin={HandleAdmin} handleUser={handleUser} HandleDelete={HandleDelete} key={allUser._id} allUser={allUser} refetch={refetch}></UserAllData>)
                             } */}
 
-                            { 
+                            {
 
                                 UserIdValueShow?.length > 0 ?
 
-                                UserIdValueShow.slice(0,200)?.map(allUser => <UserAllData HandleAdmin={HandleAdmin} handleUser={handleUser} HandleDelete={HandleDelete} key={allUser._id} allUser={allUser} refetch={refetch}></UserAllData>)
-                                :
-                                adminAllUsers.slice(0,limit)?.map(allUser => <UserAllData HandleAdmin={HandleAdmin} handleUser={handleUser} HandleDelete={HandleDelete} key={allUser._id} allUser={allUser} refetch={refetch}></UserAllData>)
+                                    UserIdValueShow.slice(0, 200)?.map(allUser => <UserAllData HandleAdmin={HandleAdmin} handleUser={handleUser} HandleDelete={HandleDelete} key={allUser._id} allUser={allUser} refetch={refetch}></UserAllData>)
+                                    :
+                                    adminAllUsers.slice(0, limit)?.map(allUser => <UserAllData HandleAdmin={HandleAdmin} handleUser={handleUser} HandleDelete={HandleDelete} key={allUser._id} allUser={allUser} refetch={refetch}></UserAllData>)
                             }
 
                         </tbody>
                     </table>
                 </div>
-                  <div ref={loaderRef} className="loader">
+                <div ref={loaderRef} className="loader">
                     {limit < adminAllUsers.length ? "Loading more users..." : "No more users to load"}
                 </div>
             </div>

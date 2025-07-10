@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import useRole from '../../../../Hook/useRole';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
+import moment from 'moment';
 
 
 
@@ -37,7 +38,7 @@ const ConfirmePayment = () => {
     },
   });
   // console.log(BankInformationAll)
-  
+
   // Payment Select Method
   // ======================================
   const [selectedBank, setSelectedBank] = useState("");
@@ -52,8 +53,10 @@ const ConfirmePayment = () => {
     let PayNumber = e.target.numbers.value;
     let PayTrxId = e.target.PayTransactionsId.value;
     let PaymentIdUser = Math.round(Math.random() * 99999999).toString();
+    let date = moment().format("DD/MM/YYYY")
+    let time = moment().format("hh:mm A")
 
-    let allInfo = { PayTrxId, PaymentIdUser, TotalAmount: paymentInfo[0], AccountNumber: PayNumber, payType: selectedBank, image:selectedImage, status: "pending", UserName: roles?.name, UserEmail: roles?.email, }
+    let allInfo = { date,time, PayTrxId, PaymentIdUser, TotalAmount: paymentInfo[0], AccountNumber: PayNumber, payType: selectedBank, image: selectedImage, status: "pending", UserName: roles?.name, UserEmail: roles?.email, }
     // console.log(allInfo)
 
     fetch("https://test.e-cash-id.com/userPaymentRequest", {

@@ -159,7 +159,7 @@ const EveryTopDetails = () => {
                                     showCancelButton: true,
                                     confirmButtonColor: '#3085d6',
                                     cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Login Now'
+                                    // confirmButtonText: 'Login Now'
                                 })
                         } else {
                             Swal.fire({

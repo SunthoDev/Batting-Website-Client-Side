@@ -25,10 +25,13 @@ const Withdraw = () => {
         setBtnDisable(true)
         setError("")
         let PaymentNumber = event.target.PaymentReceivedNum.value
-        let paymentType = event.target.paymentReceivedType.value
-        let RequestBalance = event.target.WithdrawAmount.value
+        let RequestBalance = parseFloat(event.target.WithdrawAmount.value);
+        let afterCharge = Math.round(RequestBalance * 5 / 100);
+        let TotalBalance = RequestBalance + afterCharge
+
         let WithdrawId = Math.round(Math.random() * 99999999).toString()
-        let Date = moment().format("MM/D/YY , hh:mm A")
+        let date = moment().format("DD/MM/YYYY")
+        let time = moment().format("hh:mm A")
 
         // roles?.userBalance < 200
         if (RequestBalance < 200) {
@@ -41,7 +44,7 @@ const Withdraw = () => {
             return;
         }
 
-        let allInfo = { PaymentNumber, paymentType, RequestBalance, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", WithdrawId, Date }
+        let allInfo = { PaymentNumber, paymentType: roles?.bankName, RequestBalance, afterCharge, TotalBalance, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", WithdrawId, date, time }
         // console.log(allInfo)
 
         fetch("https://test.e-cash-id.com/UserSendWithdrawRequest", {
@@ -92,22 +95,8 @@ const Withdraw = () => {
     let userPendingWithdrawRequest = userAllWithdrawData?.find(userPendingData => userPendingData?.UserEmail === roles?.email && userPendingData?.status === "pending")
 
 
-    // ======================================================
-    // Payment Selected Status Find and Apply Start
-    // ======================================================
-    // const { data: AdminPaymentStatusData = [] } = useQuery({
-    //     queryKey: ["AdminPaymentStatusData"],
-    //     queryFn: async () => {
-    //         const res = await fetch("https://test.e-cash-id.com/AdminPaymentStatusData");
-    //         return res.json();
-    //     },
-    // });
 
-    // // console.log(AdminPaymentStatusData[0])
-    // let paymentTypeAdmin = AdminPaymentStatusData[0]
-    // ======================================================
-    // Payment Selected Status Find and Apply End
-    // ======================================================
+
 
 
     return (
@@ -124,13 +113,58 @@ const Withdraw = () => {
                 </p>
 
                 <form onSubmit={handleWithdrawRequestSend} className="space-y-6 mt-8">
-                    <input
-                        required
-                        name="PaymentReceivedNum"
-                        type="text"
-                        placeholder="Enter recipient number (e.g. 01XXXXXXXXX)"
-                        className="w-full p-3 rounded-md bg-[#2b2b2b] border border-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-[#3ccc70]"
-                    />
+                    <div className="relative w-full">
+                        <input
+                            required
+                            name="PaymentReceivedNum"
+                            value={roles?.accountNumber}
+                            type="text"
+                            placeholder="Enter recipient number (e.g. 01XXXXXXXXX)"
+                            className="w-full p-3 rounded-md bg-[#2b2b2b] border border-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-[#3ccc70]"
+                        />
+
+                        {/* Delete Icon (Font Awesome 4.7) */}
+                        <button
+                            type="button"
+                            className="absolute top-2.5 right-3 text-gray-400 hover:text-red-500 text-lg"
+                            onClick={() => {
+                                Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Yes, delete it!"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+
+                                        fetch(`https://test.e-cash-id.com/UserBankAccountWillBeEmpty/${roles?._id}`, {
+                                            method: "PATCH",
+                                        })
+                                            .then(res => res.json())
+                                            .then(data => {
+                                                if (data.modifiedCount > 0) {
+                                                    Swal.fire({
+                                                        position: "top-end",
+                                                        icon: "success",
+                                                        title: "Delete Bank Account success !!",
+                                                        showConfirmButton: false,
+                                                        timer: 1500
+                                                    });
+                                                    e.target.reset()
+                                                    navigate("/AllBankCard")
+                                                }
+                                                console.log(data)
+                                            })
+                                    }
+                                });
+                            }}
+                        >
+                            <i className="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
                     <input
                         required
                         name="WithdrawAmount"
@@ -139,15 +173,6 @@ const Withdraw = () => {
                         placeholder="Enter amount to withdraw"
                         className="w-full p-3 rounded-md bg-[#2b2b2b] border border-gray-700 placeholder-gray-400 focus:ring-2 focus:ring-[#3ccc70]"
                     />
-                    <select
-                        required
-                        name="paymentReceivedType"
-                        className="w-full p-3 rounded-md bg-[#2b2b2b] border border-gray-700 text-white focus:ring-2 focus:ring-[#3ccc70]"
-                    >
-                        <option disabled selected>Choose payment method</option>
-                        <option>Bkash</option>
-                        <option>Nagad</option>
-                    </select>
 
                     {roles?.userBalance < 200 && (
                         <p className="text-sm text-red-400 font-semibold">You must have at least ৳200 to withdraw.</p>

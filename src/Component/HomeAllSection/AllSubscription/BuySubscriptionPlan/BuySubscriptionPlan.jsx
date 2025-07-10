@@ -7,6 +7,7 @@ import useRole from '../../../../Hook/useRole';
 import Swal from 'sweetalert2';
 import { ToastContainer, toast } from 'react-toastify';
 import { useQuery } from '@tanstack/react-query';
+import moment from 'moment';
 
 const BuySubscriptionPlan = () => {
 
@@ -16,13 +17,32 @@ const BuySubscriptionPlan = () => {
     let SubscriptionData = useLoaderData()
     // console.log(SubscriptionData)
 
+    // user All (by) Subscription Data Find here
+    // ==================================================
+    const { data: UserBySubscriptionDataAll = [], refetch } = useQuery({
+        queryKey: ["UserSubscriptionDataAll"],
+        queryFn: async () => {
+            const res = await fetch("https://test.e-cash-id.com/UserSubscriptionDataAll");
+            return res.json();
+        },
+    });
+    // console.log(SubscriptionData)
+    // ==========================================================================================================
+    // Find user any pending Subscription request || So that he can not ber sent rather Subscription by request
+    // ==========================================================================================================
+    let userPendingWithdrawRequest = UserBySubscriptionDataAll?.find(SubscriptionPendingData => SubscriptionPendingData?.UserEmail === roles?.email && SubscriptionPendingData?.status === "pending")
 
-    // All Refer Bonus Percentage
+
+
+
+
+    // ===========================================================================================================
+    // All Refer Bonus Percentage gave admin
     // =======================================
     const { data: AllReferBonusPercent = [] } = useQuery({
         queryKey: ["GetReferBonusPercent"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/GetReferBonusPercent");
+            const res = await fetch("https://test.e-cash-id.com/GetReferBonusPercent");
             return res.json();
         },
     });
@@ -34,8 +54,9 @@ const BuySubscriptionPlan = () => {
 
 
 
-    // Buy A Subscription Plan
-    // ============================================
+    // ====================================================
+    // Buy A Subscription Plan Request Send To Database
+    // ====================================================
     let HandleBuySubscription = () => {
         // =============================================
         // Before Check User Money
@@ -91,19 +112,18 @@ const BuySubscriptionPlan = () => {
                     // ================================================
                     // Database Data Sent Work Start
                     // ================================================
-                    // ,SubscriptionDate,,,id,image,_id
 
                     let allInfo = {
+                        date: moment().format("DD/MM/YYYY"), time: moment().format("hh:mm A"),
                         SubPrice: SubscriptionData?.SubscriptionPrice,
                         SubscriptionDay: SubscriptionData?.SubscriptionDate,
                         SubDayBonus: SubscriptionData?.DailyProfit,
                         TotalProfite: SubscriptionData?.TotalProfit,
-                        UseRefBonusUser: SubscriptionData?.SubscriptionPrice * 18 / 100,
+                        UseRefBonusUser: SubscriptionData?.SubscriptionPrice * AdminGaveRefBonus / 100,
 
                         useRefCode: roles?.UseRefCode, userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", SubscriptionId, hours: ClimeHours
                     }
                     // console.log(allInfo)
-
 
                     // Send User Subscription Request Here
                     fetch("https://test.e-cash-id.com/UserSubscriptionRequest", {
@@ -119,7 +139,8 @@ const BuySubscriptionPlan = () => {
                             if (data.insertedId) {
                                 if (roles?.UseRefCode !== "") {
                                     let allRefInfo = {
-                                        UseRefBonusUser: SubscriptionData?.SubscriptionPrice * 18 / 100,
+                                        date: moment().format("DD/MM/YYYY"), time: moment().format("hh:mm A"),
+                                        UseRefBonusUser: SubscriptionData?.SubscriptionPrice * AdminGaveRefBonus / 100,
                                         userId: roles?.userId, UserName: roles?.name, UserEmail: roles?.email, status: "pending", ThatBuySubscriptionSameRefId: SubscriptionId, useRefCode: roles?.UseRefCode
                                     }
                                     fetch("https://test.e-cash-id.com/UserRefRequest", {
@@ -213,13 +234,29 @@ const BuySubscriptionPlan = () => {
                     </div>
                 </div>
 
+
+
                 {/* Buy Button */}
-                <button
-                    onClick={HandleBuySubscription}
-                    className="w-full bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 rounded-full transition-all duration-300 shadow-lg"
-                >
-                    ✨ Buy Now
-                </button>
+                {
+                    userPendingWithdrawRequest ?
+                        <button
+                            onClick={() => {
+                                navigate("/Climed")
+                            }}
+                            className="w-full bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 rounded-full transition-all duration-300 shadow-lg"
+                        >
+                            ✨You Already have one pending subscription ! wite for approved
+                        </button>
+                        :
+                        <button
+                            onClick={HandleBuySubscription}
+                            className="w-full bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 rounded-full transition-all duration-300 shadow-lg"
+                        >
+                            ✨ Buy Now
+                        </button>
+
+                }
+
             </div>
         </div>
     );

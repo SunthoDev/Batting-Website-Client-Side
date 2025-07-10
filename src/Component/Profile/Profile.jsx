@@ -201,7 +201,7 @@ const Profile = () => {
                             // clipPath: 'polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%)',
                         }}
                         onClick={() => {
-                            // roles?.bankName && roles?.accountNumber && roles?.accountHolder ? "" :
+                            roles?.bankName && roles?.accountNumber && roles?.accountHolder ? "" :
                             navigate("/AllBankCard")
                         }}
                     >
@@ -289,7 +289,7 @@ const Profile = () => {
                                         showCancelButton: true,
                                         confirmButtonColor: '#3085d6',
                                         cancelButtonColor: '#d33',
-                                        confirmButtonText: 'Login Now'
+                                        // confirmButtonText: 'Login Now'
                                     })
                             } else {
 

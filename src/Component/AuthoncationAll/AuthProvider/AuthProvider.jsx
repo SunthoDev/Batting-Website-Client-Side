@@ -73,6 +73,7 @@ let AuthProvider = ({ children }) => {
 
     let [paymentInfo, setPaymentInfo] = useState([])
     let [subscriptionPrice, setSubscriptionPrice] = useState([])
+    let [Date, setDate] = useState("")
 
 
 
@@ -89,7 +90,9 @@ let AuthProvider = ({ children }) => {
         paymentInfo,
         setPaymentInfo,
         subscriptionPrice,
-        setSubscriptionPrice
+        setSubscriptionPrice,
+        Date,
+        setDate
     }
     return (
         <div>

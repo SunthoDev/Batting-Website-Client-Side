@@ -20,7 +20,7 @@ const InventionUser = () => {
     const { data: AllReferBonusPercent = [] } = useQuery({
         queryKey: ["GetReferBonusPercent"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/GetReferBonusPercent");
+            const res = await fetch("https://test.e-cash-id.com/GetReferBonusPercent");
             return res.json();
         },
     });

@@ -28,6 +28,9 @@ import AdminDashboard from '../../DashboardAll/AdminPanelDashboardAll/AdminDashb
 import MyGift from '../../OthersRouteWebsiteHome/MyGift/MyGift';
 import AllBankCard from '../../OthersRouteWebsiteHome/AllBankCard/AllBankCard';
 import SingUpBonus from '../../DashboardAll/AdminPanelDashboardAll/SingUpBonus/SingUpBonus';
+import AllReport from '../../DashboardAll/AllReport/AllReport ';
+import DailyAllReport from '../../DashboardAll/DailyAllReport/DailyAllReport';
+import SearchReport from '../../DashboardAll/DailyAllReport/SearchReport/SearchReport';
 
 
 let route = createBrowserRouter([
@@ -139,6 +142,18 @@ let route = createBrowserRouter([
             {
                 path: "SingUpBonus",
                 element: <PrivateRoute> <SingUpBonus></SingUpBonus> </PrivateRoute>
+            },
+            {
+                path: "AllReport",
+                element: <PrivateRoute> <AllReport></AllReport> </PrivateRoute>
+            },
+            {
+                path: "DailyAllReport",
+                element: <PrivateRoute> <DailyAllReport></DailyAllReport> </PrivateRoute>
+            },
+            {
+                path: "SearchReport",
+                element: <PrivateRoute> <SearchReport></SearchReport> </PrivateRoute>
             },
            
 
