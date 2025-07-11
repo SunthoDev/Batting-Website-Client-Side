@@ -56,7 +56,7 @@ const HeaderBottom = () => {
                         })
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    navigate("/login", { state: { from: location } })
+                                    navigate("/login")
                                     toast("Login Page Success")
                                 }
                             })
@@ -86,7 +86,7 @@ const HeaderBottom = () => {
                         })
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    navigate("/login", { state: { from: location } })
+                                    navigate("/login")
                                     toast("Login Page Success")
                                 }
                             })
@@ -116,7 +116,7 @@ const HeaderBottom = () => {
                         })
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    navigate("/login", { state: { from: location } })
+                                    navigate("/login")
                                     toast("Login Page Success")
                                 }
                             })

@@ -77,15 +77,16 @@ const MyGift = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                console.log(data)
+                                // console.log(data)
                                 if (data.modifiedCount > 0) {
                                     setCouponMessage("✅ Coupon applied successfully!");
                                     Swal.fire({
-                                        position: "top-end",
+                                        title: "🎁 Bonus Gift পেয়েছো!",
+                                        html: `<h2 class="text-green-600 text-3xl font-bold mb-2">৳ ${CheckCouponHere?.AmountBunas}</h2>
+                                         <p class="text-gray-700">তোমার অ্যাকাউন্টে বোনাস যুক্ত হয়েছে!</p>`,
                                         icon: "success",
-                                        title: "You Own This Bonus !!",
-                                        showConfirmButton: false,
-                                        timer: 1500
+                                        confirmButtonText: "ধন্যবাদ ❤️",
+                                        confirmButtonColor: "#22c55e",
                                     });
                                     e.target.reset()
                                     refetch()
@@ -97,7 +98,7 @@ const MyGift = () => {
         }
     }
 
-    
+
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
             <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md">

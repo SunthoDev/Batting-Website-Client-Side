@@ -98,7 +98,6 @@ const Withdraw = () => {
 
 
 
-
     return (
         <div className="min-h-screen py-24 bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white px-4 md:px-0">
             <div className="w-full md:w-[40%] mx-auto bg-[#1b1b1b] rounded-2xl shadow-2xl p-8 border border-[#3ccc70]">
@@ -152,15 +151,12 @@ const Withdraw = () => {
                                                         showConfirmButton: false,
                                                         timer: 1500
                                                     });
-                                                    e.target.reset()
                                                     navigate("/AllBankCard")
                                                 }
-                                                console.log(data)
                                             })
                                     }
                                 });
-                            }}
-                        >
+                            }}>
                             <i className="fa fa-trash" aria-hidden="true"></i>
                         </button>
                     </div>
