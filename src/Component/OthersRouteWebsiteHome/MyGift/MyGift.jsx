@@ -44,12 +44,22 @@ const MyGift = () => {
         // =================================================
         if (!CheckCouponHere) {
             setCouponMessage("❌ Your coupon code is invalid.");
+             Swal.fire({
+                title: "❌ Your coupon code is invalid.",
+                icon: "warning",
+                confirmButtonColor: "#22c55e",
+            });
             return;
         }
         // ⚠️ If user provided coupon data is used
         // =================================================
         if (CheckCouponHere?.status === "Used") {
             setCouponMessage("⚠️ Your coupon code is already used.");
+            Swal.fire({
+                title: "⚠️ Your coupon code is already used.",
+                icon: "warning",
+                confirmButtonColor: "#22c55e",
+            });
             return;
         }
 

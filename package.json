@@ -21,6 +21,7 @@
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
+    "react-custom-roulette": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.51.5",
@@ -29,6 +30,7 @@
     "react-router-dom": "^6.21.3",
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.5",
+    "react-wheel-of-prizes": "^1.1.0",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.11.1",
     "swiper": "^11.0.7"

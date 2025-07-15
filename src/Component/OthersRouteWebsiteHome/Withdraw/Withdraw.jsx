@@ -38,9 +38,20 @@ const Withdraw = () => {
             setError("You cant nit withdraw minumum 200")
             return;
         }
-        if (roles?.userBalance < RequestBalance) {
+        if (roles?.userBalance < TotalBalance) {
             setError(`There is not ৳${RequestBalance} any amount on your balance`)
             setBtnDisable(false)
+            Swal.fire({
+                icon: "warning",
+                title: "❌ Insufficient Balance!",
+                html: `
+                    <p>🔸 <strong>Your Charge ${afterCharge} with total request:</strong> ৳${TotalBalance} Tk.</p>
+                    <p>🔸 <strong>Your current balance:</strong> ৳${roles?.userBalance} Tk.</p>
+                    <p class="mt-2 text-red-500 font-medium">⚠️ Please try with a lower amount.</p>
+                    `,
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#ef4444", // Tailwind red-500
+            });
             return;
         }
 

@@ -346,15 +346,14 @@ const EveryTopDetails = () => {
                 <div className="w-full bg-white shadow-md rounded-xl py-5 flex flex-col items-center justify-center hover:scale-[1.02] transition"
                     onClick={() => {
                         if (user && roles?.email && user?.email) {
-                            // navigate("/Spinner");
-                            Swal.fire({
-                                title: 'Coming Soon',
-                                icon: 'success',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                // confirmButtonText: 'Login Now'
-                            })
+                            navigate("/Spinner");
+                            // Swal.fire({
+                            //     title: 'Coming Soon',
+                            //     icon: 'success',
+                            //     showCancelButton: true,
+                            //     confirmButtonColor: '#3085d6',
+                            //     cancelButtonColor: '#d33',
+                            // })
                         } else {
                             Swal.fire({
                                 title: 'Please Login Your Account',

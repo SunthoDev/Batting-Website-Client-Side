@@ -200,10 +200,6 @@ const Profile = () => {
                             backgroundColor: '#FACC15',
                             // clipPath: 'polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%)',
                         }}
-                        onClick={() => {
-                            roles?.bankName && roles?.accountNumber && roles?.accountHolder ? "" :
-                                navigate("/AllBankCard")
-                        }}
                     >
                         {
                             roles?.bankName && roles?.accountNumber && roles?.accountHolder ?
@@ -213,11 +209,21 @@ const Profile = () => {
                                 </div>
                                 :
                                 <div className="mb-[8px] md:mb-[0px]">
-                                    <h4 className="text-[18px] text-left font-semibold">No bank card</h4>
-                                    <p className="text-[16px] text-left">Please add bank card</p>
+                                    <h4 className="text-center md:text-left text-[18px] font-semibold">No bank card</h4>
+                                    <button
+                                        onClick={() => {
+                                            roles?.bankName && roles?.accountNumber && roles?.accountHolder ? "" :
+                                                navigate("/AllBankCard")
+                                        }}
+                                        type="button"
+                                        className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-pink-600 hover:from-orange-600 hover:to-pink-700 text-white text-sm font-medium px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                                    >
+                                        <i className="fa fa-credit-card mr-2"></i>
+                                        Add Bank Card
+                                    </button>
                                 </div>
                         }
-                        <a className=" inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold shadow-lg transform hover:scale-105 hover:shadow-xl transition duration-300 ease-in-out"
+                        <a href="https://www.dropbox.com/scl/fi/rnm84wco4yrkjvge1moof/E-CASH-ID.apk?rlkey=91e174ikz6lyewiel4tq4yal7&st=u3fy5bhm&dl=1" className=" inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold shadow-lg transform hover:scale-105 hover:shadow-xl transition duration-300 ease-in-out"
                         >
                             <i className="fa fa-download text-xl animate-bounce"></i>
                             <span className="tracking-wide">E CASH-ID App Download</span>

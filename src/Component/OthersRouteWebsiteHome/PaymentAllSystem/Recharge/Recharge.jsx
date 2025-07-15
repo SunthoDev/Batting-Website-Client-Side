@@ -33,8 +33,8 @@ const Recharge = () => {
     //   setError("Select Proper Payment Method");
     //   return;
     // }
-    if (TotalAmount < 400) {
-      setError("You must do a minimum recharge of 400 tk");
+    if (TotalAmount < 300) {
+      setError("You must do a minimum recharge of 300 tk");
       return;
     }
     // if (number.length < 11) {
@@ -106,7 +106,7 @@ const Recharge = () => {
                 className="w-full mt-3 bg-gray-800 border border-gray-600 rounded px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter recharge amount"
               />
-              <p className="text-sm text-yellow-400 mt-1">Minimum recharge is 400৳</p>
+              <p className="text-sm text-yellow-400 mt-1">Minimum recharge is 300৳</p>
             </div>
 
             {/* Payment Info */}
