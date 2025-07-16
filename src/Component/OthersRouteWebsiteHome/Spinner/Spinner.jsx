@@ -200,7 +200,6 @@ const Spinner = () => {
     }
   };
 
-// FreeSpine:used
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-[80px] pb-[80px]">

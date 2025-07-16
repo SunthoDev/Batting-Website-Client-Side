@@ -116,7 +116,7 @@ const BuySubscriptionPlan = () => {
                     let allInfo = {
                         date: moment().format("DD/MM/YYYY"), time: moment().format("hh:mm A"),
                         SubPrice: SubscriptionData?.SubscriptionPrice,
-                        SubscriptionDay: SubscriptionData?.SubscriptionDate,
+                        SubscriptionDay: parseInt(SubscriptionData?.SubscriptionDate),
                         SubDayBonus: SubscriptionData?.DailyProfit,
                         TotalProfite: SubscriptionData?.TotalProfit,
                         UseRefBonusUser: SubscriptionData?.SubscriptionPrice * AdminGaveRefBonus / 100,
