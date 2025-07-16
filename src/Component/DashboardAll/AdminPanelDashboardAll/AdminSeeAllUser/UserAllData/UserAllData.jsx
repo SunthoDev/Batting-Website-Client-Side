@@ -51,9 +51,8 @@ const UserAllData = ({ allUser, HandleAdmin, handleUser, HandleDelete, refetch }
                     </div>
                 </div>
             </td>
-
             <td>
-                <h3>{name} <br /> Balance: {userBalance}</h3>
+                <h3>{name} <br /> Balance: {userBalance} <br /> Free Spine status: {allUser?.FreeSpine}</h3>
             </td>
             <td>
                 <h3>{email}</h3>
