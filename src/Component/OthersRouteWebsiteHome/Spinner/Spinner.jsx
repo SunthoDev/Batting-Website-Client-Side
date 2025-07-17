@@ -3,19 +3,22 @@ import "./Spinner.css"
 import { Wheel } from 'react-custom-roulette';
 import { useQuery } from '@tanstack/react-query';
 import useRole from '../../../Hook/useRole';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Spinner = () => {
 
   const [roles] = useRole()
+  let Navigate = useNavigate()
   // console.log(roles)
+
 
   // =======================================================================================================
   // Admin Control Spinner Data get from Database
   // ==============================================
   // user data all find use tenStack query 
-  const { data: AllSPinnerData = [], refetch} = useQuery({
+  const { data: AllSPinnerData = [], refetch } = useQuery({
     queryKey: ["WheelSpinnerAllWorkHere_SpinnerControlData"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/WheelSpinnerAllWorkHere/SpinnerControlData");
@@ -25,7 +28,6 @@ const Spinner = () => {
   let spinnerData = AllSPinnerData[0]
   let PaidSpinPrice = spinnerData?.Amount
   // console.log(AllSPinnerData)
-
 
 
   // =======================================================================================================
@@ -45,7 +47,6 @@ const Spinner = () => {
     { option: 'Smart Watch', style: { backgroundColor: '#FF9000' } },
   ];
 
-  let x = 400; // এখানে তুমি চাইলে dynamic ভাবে value set করতে পারো (API, input, props etc)
 
   // Spinner Value set tro here 
   // ================================
@@ -61,11 +62,11 @@ const Spinner = () => {
     // ================================================================================
     // it is condition so that, user cant get his win price depended on spine count.
     // ================================================================================
-    if (x === 50) {
+    if (roles?.spinerCount === 50) {
       newPrizeNumber = data.findIndex(item => item.option === '500');
-    } else if (x === 100) {
+    } else if (roles?.spinerCount === 100) {
       newPrizeNumber = data.findIndex(item => item.option === 'Smart Watch');
-    } else if (x === 300) {
+    } else if (roles?.spinerCount === 300) {
       newPrizeNumber = data.findIndex(item => item.option === 'Laptop');
     } else {
       // if user not has 50/10/300 spin, then it will be random spine.
@@ -153,7 +154,7 @@ const Spinner = () => {
           }
         })
 
-    } 
+    }
     else {
       // ===============================
       // Free Spin Data Work
@@ -189,7 +190,8 @@ const Spinner = () => {
                     .then(res => res.json())
                     .then(data => {
 
-                      console.log(data)
+                      // console.log(data)
+                      Navigate("/Profile")
                       refetch()
 
                     })
@@ -202,7 +204,7 @@ const Spinner = () => {
 
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-[80px] pb-[80px]">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white pt-[100px] pb-[100px]">
       <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-800">🎯 Spin & Win</h2>
 
       <div className="shadow-xl p-4 rounded-[50%] bg-white">
@@ -221,21 +223,46 @@ const Spinner = () => {
       </div>
 
       {
-        roles?.FreeSpine === "used" ?
-          <button
-            className="mt-10 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300"
-          >
-            🎡 Try Tomorrow
-          </button>
-          :
-          <button
-            onClick={handleSpinClick}
-            className="mt-10 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300"
-          >
-            🎡 Spin Now
-          </button>
+        spinnerData?.SpineType === "Free" &&
+        <>
+          {
+            roles?.FreeSpine === "used" ?
+              <button
+                className="mt-10 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300"
+              >
+                🎡 Try Tomorrow
+              </button>
+              :
+              <button
+                onClick={handleSpinClick}
+                className="mt-10 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300"
+              >
+                🎡 Free Spin Now
+              </button>
+          }
+        </>
       }
 
+      {
+        spinnerData?.SpineType === "Paid" &&
+
+        <>
+          {roles?.userBalance >= spinnerData?.Amount ?
+            <button
+              onClick={handleSpinClick}
+              className="mt-10 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              🎡 Spin Price  {spinnerData?.Amount} Tk.
+            </button>
+            :
+            <button
+              className="mt-10 px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-full text-lg font-bold shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              🎡 Spin Price {spinnerData?.Amount} Tk You not have enough balance.
+            </button>
+          }
+        </>
+      }
     </div >
   );
 };

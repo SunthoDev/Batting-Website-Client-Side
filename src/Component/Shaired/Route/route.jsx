@@ -30,7 +30,10 @@ import AllBankCard from '../../OthersRouteWebsiteHome/AllBankCard/AllBankCard';
 import SingUpBonus from '../../DashboardAll/AdminPanelDashboardAll/SingUpBonus/SingUpBonus';
 import AllReport from '../../DashboardAll/AllReport/AllReport ';
 import DailyAllReport from '../../DashboardAll/DailyAllReport/DailyAllReport';
-import SearchReport from '../../DashboardAll/DailyAllReport/SearchReport/SearchReport';
+import SearchReport from '../../DashboardAll/DailyAllReport/SearchReport/SearchReport';import SelectPaymentOnePay from '../../OthersRouteWebsiteHome/PaymentAllSystem/OnePay/SelectPaymentOnePay/SelectPaymentOnePay';
+import ConfirmPaymentOnePay from '../../OthersRouteWebsiteHome/PaymentAllSystem/OnePay/ConfirmPaymentOnePay/ConfirmPaymentOnePay';
+import PaymentSuccessOnePay from '../../OthersRouteWebsiteHome/PaymentAllSystem/OnePay/PaymentSuccessOnePay/PaymentSuccessOnePay';
+;
 
 
 let route = createBrowserRouter([
@@ -53,6 +56,18 @@ let route = createBrowserRouter([
             {
                 path: "Recharge",
                 element:  <PrivateRoute> <Recharge></Recharge></PrivateRoute>
+            },
+            {
+                path: "SelectPaymentOnePay",
+                element:  <PrivateRoute> <SelectPaymentOnePay></SelectPaymentOnePay></PrivateRoute>
+            },
+            {
+                path: "ConfirmPaymentOnePay",
+                element:  <PrivateRoute> <ConfirmPaymentOnePay></ConfirmPaymentOnePay></PrivateRoute>
+            },
+            {
+                path: "PaymentSuccessOnePay",
+                element:  <PrivateRoute> <PaymentSuccessOnePay></PaymentSuccessOnePay></PrivateRoute>
             },
             {
                 path: "RechargeHistory",

@@ -16,57 +16,26 @@ const Recharge = () => {
   let navigate = useNavigate()
   const [roles] = useRole()
 
-
   let [clickAmount, setClickAmount] = useState()
   let [error, setError] = useState("")
 
 
+
+  // when click submit  go to payment Confirm page
+  // =====================================================
   let handleRecharge = (e) => {
     e.preventDefault()
     setError("")
 
     let TotalAmount = e.target.Amount.value
-    // let number = e.target.numbers.value
-    // let PayType = e.target.PaymentType.value
-
-    // if (PayType !== "Bkash" && PayType !== "Nagad") {
-    //   setError("Select Proper Payment Method");
-    //   return;
-    // }
     if (TotalAmount < 300) {
       setError("You must do a minimum recharge of 300 tk");
       return;
     }
-    // if (number.length < 11) {
-    //   setError("You must give me a 11 character number");
-    //   return;
-    // }
-
     setPaymentInfo([TotalAmount])
     navigate("/ConfirmePayment")
-
+    // navigate("/OnePay")
   }
-
-
-  // ======================================================
-  // Payment Selected Status Find and Apply Start
-  // ======================================================
-
-  const { data: AdminPaymentStatusData = [], refetch } = useQuery({
-    queryKey: ["AdminPaymentStatusData"],
-    queryFn: async () => {
-      const res = await fetch("https://test.e-cash-id.com/AdminPaymentStatusData");
-      return res.json();
-    },
-  });
-
-  // console.log(AdminPaymentStatusData[0])
-  let paymentTypeAdmin = AdminPaymentStatusData[0]
-
-
-  // ======================================================
-  // Payment Selected Status Find and Apply End
-  // ======================================================
 
 
 
